@@ -116,6 +116,6 @@
     <td>July 14th 2025</td>
     <td>July 17th-18th 2025</td>
     <td>Getting ready for the live presentation. The risk is to fall short of time for building the presentation and rehearsing, as previous delays may be carried over at this point.</td>
-    <td>Having been a teacher mitigates the risk of being unprepared as I can face an audience even with no support</td>
+    <td>Having been a teacher mitigates the risk of being unprepared as I can face an audience even with little preparation. The presentation support however has to be neat.</td>
   </tr>
 </table>
