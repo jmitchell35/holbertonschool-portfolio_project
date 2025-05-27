@@ -69,7 +69,7 @@
 <table width="100%">
   <tr>
     <th align="left" bgcolor="#DDEBF7">WITHIN SCOPE</th>
-    <td>The MVP should be very focused : home page, login/logout, profile page, filtering abilities, interacting with API routes and DB using ORM.</td>
+    <td>The MVP should be very focused : home page, login/logout, profile page, filtering abilities, recipe page, interacting with API routes and DB using ORM.</td>
   </tr>
 </table>
 
