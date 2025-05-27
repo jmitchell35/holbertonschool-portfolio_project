@@ -91,28 +91,35 @@
     <th align="left" bgcolor="#E8E8E8">MITIGATION STRATEGY</th>
   </tr>
   <tr>
-    <td>S1 - Project technical documentation (User stories, diagrams...)</td>
-    <td>May 27th 2025</td>
+    <td>S1 - Idea development</td>
+    <td>April 21st 2025</td>
+    <td>May 2nd 2025</td>
+    <td>The challenge is both to find an idea, and to keep it simple.</td>
+    <td>Stick to RNCP expectations to stay inline.</td>
+  </tr>
+  <tr>
+    <td>S2 - Project charter - technical documentation (User stories, diagrams...)</td>
+    <td>May 5th 2025</td>
     <td>June 6th 2025</td>
     <td>First time building project from scratch and building mocks/user stories. Loosing time choosing between tools, dispersion between several tools is a risk.</td>
     <td>Sticking to well known tools, with proven GitHub integration like draw.io for diagrams. Only adding a tool for a very specific feature which cannot be found elsewhere. E.g.: Figma for user interactive user stories.</td>
   </tr>
   <tr>
-    <td>S2 - Working back-end - Business logic and API routes</td>
+    <td>S3 - Working back-end - Business logic and API routes</td>
     <td>June 9th 2025</td>
     <td>June 20th 2025</td>
     <td>Getting up to pace with Java and Spring boot will be a challenge. I am expecting overlapping with next sprint. The risk is the learning curve being steep for such a small amount of time</td>
     <td>Next sprint is longer, kind of provisioning time for overlapping and overcoming technical challenges. The choice of Springboot should allow for the project to remain simple as the framework is not suited for wide-scale projects.</td>
   </tr>
   <tr>
-    <td>S3 - Building modern, responsive, accessible client</td>
+    <td>S4 - Building modern, responsive, accessible client</td>
     <td>June 23rd 2025</td>
     <td>July 11th 2025</td>
     <td>The most challenging sprint - modern and accessible would work with shad.cn, but the learning curve may be steep. Time management is at risk once again here.</td>
     <td>The sprint is longer to provide either for technical challenges dragged from previous print or facing new ones for this one. Also, the framework approach may turn the learning curve steeper, but allow the coding to be faster.</td>
   </tr>
   <tr>
-    <td>S4 - Road to Demo Day</td>
+    <td>S5 - Road to Demo Day - Project closure</td>
     <td>July 14th 2025</td>
     <td>July 17th-18th 2025</td>
     <td>Getting ready for the live presentation. The risk is to fall short of time for building the presentation and rehearsing, as previous delays may be carried over at this point.</td>
