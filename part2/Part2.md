@@ -1,4 +1,4 @@
-# ONE-PAGE PROJECT CHARTER
+# PROJECT CHARTER - Bon AppEatIt
 
 <table width="100%">
   <tr>
