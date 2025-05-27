@@ -23,7 +23,7 @@
   <tr>
     <td>Free - school project</td>
     <td>Free - school project</td>
-    <td>June 2nd 2025</td>
+    <td>May 27th 2025</td>
     <td>July 18th 2025</td>
   </tr>
 </table>
