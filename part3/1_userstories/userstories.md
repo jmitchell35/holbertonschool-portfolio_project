@@ -10,9 +10,13 @@
   <tr>
     <td>1</td>
     <td>As an unregistered user, I would like to be able to see a list of recipes on the home page and filter that list.</td>
-    <td>* Login button is visible.
-    * Unfiltered list of recipes is queried
-    * Filters appear</td>
+    <td>
+      <ul>
+        <li>Login button is visible.</li>
+        <li>Unfiltered list of recipes is queried</li>
+        <li>Filters appear</li>
+      </ul>
+    </td>
   </tr>
   <tr>
     <td>2</td>
