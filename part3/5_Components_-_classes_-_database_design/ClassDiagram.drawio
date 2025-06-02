@@ -18,7 +18,7 @@
         <mxCell id="2_qpchY4eQDPO05ME19w-3" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;- Name : string&lt;/div&gt;&lt;div&gt;- List of ingredients : Foreign Key&lt;/div&gt;&lt;div&gt;- Preparation time : int&lt;/div&gt;&lt;div&gt;- Instructions : string&lt;/div&gt;&lt;div&gt;- List of tags : Foreign Key&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-8" vertex="1">
           <mxGeometry y="30" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="2_qpchY4eQDPO05ME19w-7" value="&lt;div&gt;+ Submit a recipe&lt;/div&gt;&lt;div&gt;+ Edit&lt;/div&gt;&lt;div&gt;+ Delete&lt;/div&gt;&lt;div&gt;+ Tag the recipe&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-8" vertex="1">
+        <mxCell id="2_qpchY4eQDPO05ME19w-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-8" vertex="1">
           <mxGeometry y="120" width="230" height="90" as="geometry" />
         </mxCell>
         <mxCell id="2_qpchY4eQDPO05ME19w-9" value="" style="group" parent="1" vertex="1" connectable="0">
@@ -35,7 +35,7 @@
         <mxCell id="2_qpchY4eQDPO05ME19w-12" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;-&amp;nbsp;name :&amp;nbsp;string&lt;/div&gt;&lt;div&gt;- Recipe : Foreign Key&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-9" vertex="1">
           <mxGeometry y="30" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="2_qpchY4eQDPO05ME19w-13" value="&lt;div&gt;+ Submit an ingredient&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-9" vertex="1">
+        <mxCell id="2_qpchY4eQDPO05ME19w-13" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-9" vertex="1">
           <mxGeometry y="120" width="230" height="90" as="geometry" />
         </mxCell>
         <mxCell id="2_qpchY4eQDPO05ME19w-14" value="ID - uuid but no increment ?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
@@ -72,7 +72,7 @@
         <mxCell id="2_qpchY4eQDPO05ME19w-26" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;- Name : string&lt;br&gt;- Recipe : Foreign Key&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-23" vertex="1">
           <mxGeometry y="30" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="2_qpchY4eQDPO05ME19w-27" value="&lt;div&gt;+ Submit a tag&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-23" vertex="1">
+        <mxCell id="2_qpchY4eQDPO05ME19w-27" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-23" vertex="1">
           <mxGeometry y="120" width="230" height="90" as="geometry" />
         </mxCell>
         <mxCell id="2_qpchY4eQDPO05ME19w-28" value="Contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=classic;startFill=0;endFill=1;" parent="1" source="2_qpchY4eQDPO05ME19w-3" target="2_qpchY4eQDPO05ME19w-26" edge="1">
@@ -98,7 +98,7 @@
         <mxCell id="k0aN1hesgMusfAzjtdi0-4" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;- Text : string&lt;/div&gt;&lt;div&gt;- Recipe : Foreign Key&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-1">
           <mxGeometry y="30" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="k0aN1hesgMusfAzjtdi0-5" value="&lt;div&gt;+ Add instruction&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-1">
+        <mxCell id="k0aN1hesgMusfAzjtdi0-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-1">
           <mxGeometry y="120" width="230" height="90" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-6" value="Contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2_qpchY4eQDPO05ME19w-7" target="k0aN1hesgMusfAzjtdi0-3">
@@ -111,7 +111,7 @@
           <mxGeometry x="399" y="735" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-9" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="20" y="33" width="230" height="210" as="geometry" />
+          <mxGeometry x="45" y="33" width="230" height="210" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="k0aN1hesgMusfAzjtdi0-9" source="k0aN1hesgMusfAzjtdi0-11">
           <mxGeometry relative="1" as="geometry">
@@ -124,14 +124,14 @@
         <mxCell id="k0aN1hesgMusfAzjtdi0-12" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;- email : string&lt;/div&gt;&lt;div&gt;- password : hashed string&lt;/div&gt;&lt;div&gt;&lt;div&gt;- isAmin : bool&lt;/div&gt;&lt;div&gt;- Collections List : Foreign Key&lt;/div&gt;&lt;div&gt;- Owned Recipes&#39; List : Foreign Key&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-9">
           <mxGeometry y="30" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="k0aN1hesgMusfAzjtdi0-13" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-9">
+        <mxCell id="k0aN1hesgMusfAzjtdi0-13" value="&lt;div&gt;+ Add recipe to existing collection&lt;/div&gt;&lt;div&gt;+ Add recipe to new collection&lt;/div&gt;&lt;div&gt;+ Submit recipe&lt;/div&gt;&lt;div&gt;+ Edit recipe&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-9">
           <mxGeometry y="120" width="230" height="90" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-14" value="Owns" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="k0aN1hesgMusfAzjtdi0-13" target="2_qpchY4eQDPO05ME19w-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-16" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="239" y="170" width="60" height="30" as="geometry" />
+          <mxGeometry x="264" y="170" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-17" value="0..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="330" y="330" width="60" height="30" as="geometry" />
@@ -147,7 +147,7 @@
         <mxCell id="k0aN1hesgMusfAzjtdi0-20" value="Collection" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
           <mxGeometry width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="k0aN1hesgMusfAzjtdi0-21" value="&lt;div&gt;ID : string&lt;/div&gt;&lt;div&gt;Name : string&lt;/div&gt;&lt;div&gt;UserID : Foreign Key&lt;/div&gt;&lt;div&gt;RecipeID : Foreign Key&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
+        <mxCell id="k0aN1hesgMusfAzjtdi0-21" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;- Name : string&lt;/div&gt;&lt;div&gt;- UserID : Foreign Key&lt;/div&gt;&lt;div&gt;- RecipeID : Foreign Key&lt;/div&gt;&lt;div&gt;-&amp;nbsp;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
           <mxGeometry y="30" width="230" height="90" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
@@ -160,7 +160,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-25" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="239" y="80" width="60" height="30" as="geometry" />
+          <mxGeometry x="264" y="80" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-26" value="0..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="480" y="80" width="60" height="30" as="geometry" />
@@ -170,6 +170,9 @@
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-29" value="1..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="420" y="330" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="k0aN1hesgMusfAzjtdi0-30" value="Mention CRUDs ?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-140" y="305" width="240" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
