@@ -147,7 +147,7 @@
         <mxCell id="k0aN1hesgMusfAzjtdi0-20" value="Collection" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
           <mxGeometry width="230" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="k0aN1hesgMusfAzjtdi0-21" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;- Name : string&lt;/div&gt;&lt;div&gt;- UserID : Foreign Key&lt;/div&gt;&lt;div&gt;- RecipeID : Foreign Key&lt;/div&gt;&lt;div&gt;-&amp;nbsp;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
+        <mxCell id="k0aN1hesgMusfAzjtdi0-21" value="&lt;div&gt;- ID : string&lt;/div&gt;&lt;div&gt;- Name : string&lt;/div&gt;&lt;div&gt;- UserID : Foreign Key&lt;/div&gt;&lt;div&gt;- RecipeID : Foreign Key&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
           <mxGeometry y="30" width="230" height="90" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="k0aN1hesgMusfAzjtdi0-18">
