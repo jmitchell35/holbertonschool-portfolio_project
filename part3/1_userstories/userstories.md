@@ -23,7 +23,7 @@
   <tr>
     <td>2</td>
     <td>Scheduled</td>
-    <td>As an unregistered user, I would like to be able to filter the list by ingredients, number of ingredients, or cuisine tag</td>
+    <td>As an unregistered user, I would like to be able to filter the list by ingredients, number of ingredients, or cuisine tag (maybe diet ?)</td>
     <td>
       <ul>
           <li>All three filters are visible</li>
@@ -48,7 +48,11 @@
     <td>4</td>
     <td>Scheduled</td>
     <td>As an unlogged user, I would like to be able to display the details of a recipe, featuring the list of ingredients, the instructions, preparation time and pictures if any.</td>
-    <td>* Recipes can be expanded to a details page</td>
+    <td>
+      <ul>
+        <li>Recipes can be expanded to a details page</li>
+      </ul>
+    </td>
   </tr>
   <tr>
     <td>5</td>
