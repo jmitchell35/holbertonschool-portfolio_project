@@ -92,7 +92,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="v1nUesyNh9svekJ-Zioy-6" value="Client redirected to details&lt;br&gt;-&lt;br&gt;Page populated with recipe data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="zeEJzOroTsTFU0kubTcI-6" edge="1">
+        <mxCell id="v1nUesyNh9svekJ-Zioy-6" value="Client redirected to details page&lt;br&gt;-&lt;br&gt;Page populated with recipe data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="zeEJzOroTsTFU0kubTcI-6" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="190" y="350" as="targetPoint" />
           </mxGeometry>
