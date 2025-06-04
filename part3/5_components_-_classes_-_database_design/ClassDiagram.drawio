@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:139.0) Gecko/20100101 Firefox/139.0" version="27.1.3">
   <diagram name="Page-1" id="JcqKBOb1F13oiYuU-APF">
-    <mxGraphModel dx="2276" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1316" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -38,19 +38,10 @@
         <mxCell id="2_qpchY4eQDPO05ME19w-13" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="2_qpchY4eQDPO05ME19w-9" vertex="1">
           <mxGeometry y="120" width="230" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="2_qpchY4eQDPO05ME19w-14" value="ID - uuid but no increment ?" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-140" y="335" width="240" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="2_qpchY4eQDPO05ME19w-15" value="&lt;div&gt;Recipe - ingredients =&amp;gt; association table ?&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-140" y="365" width="240" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="2_qpchY4eQDPO05ME19w-18" value="Contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=classic;startFill=0;startArrow=none;endFill=1;" parent="1" source="2_qpchY4eQDPO05ME19w-3" target="2_qpchY4eQDPO05ME19w-12" edge="1">
           <mxGeometry x="0.0049" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="2_qpchY4eQDPO05ME19w-20" value="&lt;div&gt;Recipe - instructions =&amp;gt; String ?&lt;/div&gt;&lt;div&gt;If string, no layout&lt;/div&gt;&lt;div&gt;Has to be stages&lt;/div&gt;&lt;div&gt;Association table ?&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-140" y="415" width="240" height="30" as="geometry" />
         </mxCell>
         <mxCell id="2_qpchY4eQDPO05ME19w-21" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="239" y="415" width="60" height="30" as="geometry" />
@@ -165,14 +156,11 @@
         <mxCell id="k0aN1hesgMusfAzjtdi0-26" value="0..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="480" y="80" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="k0aN1hesgMusfAzjtdi0-27" value="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="k0aN1hesgMusfAzjtdi0-27" value="0..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="480" y="170" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="k0aN1hesgMusfAzjtdi0-29" value="1..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="420" y="330" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="k0aN1hesgMusfAzjtdi0-30" value="Mention CRUDs ? a checker" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-140" y="305" width="240" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
