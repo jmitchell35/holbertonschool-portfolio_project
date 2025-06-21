@@ -75,6 +75,7 @@ public class User extends BaseEntity {
     fetch = FetchType.CHOOSE_KIND
      */
     @Builder.Default // Force initializing to avoid pointing to a non-existing collection
+    @Getter @Setter
     @OneToMany(targetEntity = Collection.class, mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Collection> collections = new HashSet<>();
 
