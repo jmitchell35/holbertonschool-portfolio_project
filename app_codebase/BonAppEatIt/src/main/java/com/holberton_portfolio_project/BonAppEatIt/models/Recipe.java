@@ -24,12 +24,14 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Getter @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @AttributeOverride(name = "id", column  = @Column(name = "recipe_id"))
@@ -50,10 +52,11 @@ public class Recipe extends BaseEntity {
     @Column(name = "publisher_id")
     private String publisher;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "recipes", fetch = FetchType.LAZY)
     private Set<Collection> collections = new HashSet<>();
 
-    @ManyToMany(targetEntity = Tag.class, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Tag.class, fetch = FetchType.LAZY)
     @JoinTable(
             name = "recipe_tags",
             joinColumns = @JoinColumn(name = "recipe_id"),
@@ -62,6 +65,9 @@ public class Recipe extends BaseEntity {
             )
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToMany(targetEntity = Instruction.class, mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Instruction.class, mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Instruction> instructions = new HashSet<>();
+
+    @OneToMany(targetEntity = RecipeIngredient.class, mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
 }
