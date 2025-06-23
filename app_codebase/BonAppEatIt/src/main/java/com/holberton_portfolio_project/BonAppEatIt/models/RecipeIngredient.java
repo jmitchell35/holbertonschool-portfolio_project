@@ -1,6 +1,7 @@
 package com.holberton_portfolio_project.BonAppEatIt.models;
 
 
+import jakarta.persistence.JoinColumn;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Builder;
@@ -28,12 +29,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class RecipeIngredient extends BaseEntity {
 
     @ManyToOne(targetEntity = Recipe.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     @ManyToOne(targetEntity =  Ingredient.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
     @ManyToOne(targetEntity = Unit.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id")
     private Unit unit;
 
     @Column(name = "quantity")

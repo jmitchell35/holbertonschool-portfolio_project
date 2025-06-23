@@ -77,6 +77,7 @@ public class Ingredient extends BaseEntity {
     @Column(name = "available_in_december")
     private boolean availableInDecember;
 
+    @Builder.Default
     @OneToMany(targetEntity = RecipeIngredient.class, mappedBy = "ingredient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
 }

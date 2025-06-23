@@ -29,9 +29,11 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 public class Unit extends BaseEntity {
 
+    @Column(name = "name")
+    private String name;
+
+    @Builder.Default
     @OneToMany(targetEntity = RecipeIngredient.class, mappedBy = "unit", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
 
-    @Column(name = "name")
-    private String name;
 }

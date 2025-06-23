@@ -18,6 +18,7 @@ import jakarta.persistence.UniqueConstraint;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 // Lombok boilerplate methods
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ import lombok.AllArgsConstructor;
 import java.util.Set;
 import java.util.HashSet;
 
+@Builder
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,9 +42,11 @@ public class Collection extends BaseEntity {
     private String name;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User owner;
 
 
+    @Builder.Default
     // CascadeType.PERSIST automatically saves new recipes when saving this collection
     @ManyToMany(targetEntity = Recipe.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(

@@ -56,6 +56,7 @@ public class Recipe extends BaseEntity {
     @ManyToMany(mappedBy = "recipes", fetch = FetchType.LAZY)
     private Set<Collection> collections = new HashSet<>();
 
+    @Builder.Default
     @ManyToMany(targetEntity = Tag.class, fetch = FetchType.LAZY)
     @JoinTable(
             name = "recipe_tags",
@@ -65,9 +66,11 @@ public class Recipe extends BaseEntity {
             )
     private Set<Tag> tags = new HashSet<>();
 
+    @Builder.Default
     @OneToMany(targetEntity = Instruction.class, mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Instruction> instructions = new HashSet<>();
 
-    @OneToMany(targetEntity = RecipeIngredient.class, mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(targetEntity = RecipeIngredient.class, mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
 }
