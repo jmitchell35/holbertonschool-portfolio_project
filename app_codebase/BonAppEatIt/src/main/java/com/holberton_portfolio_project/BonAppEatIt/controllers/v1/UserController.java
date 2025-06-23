@@ -38,22 +38,21 @@ public class UserController extends BaseV1Controller {
     */
     private final UserService userService;
 
-    @PostMapping
-    @RequestMapping("/register")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserLightResponseDTO register(@Valid @RequestBody UserCreationDTO user) {
         return userService.createUser(user);
     }
 
-    @GetMapping
-    @RequestMapping("/profile")
+    @GetMapping("/profile")
+    @ResponseStatus(HttpStatus.OK)
     public UserLightResponseDTO getUserById() {
         // insert auth data extract here
         return userService.getUserById(id);
     }
 
-    @GetMapping
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public UserLightResponseDTO getUserById(@RequestParam UUID id) {
         return userService.getUserById(id);
     }

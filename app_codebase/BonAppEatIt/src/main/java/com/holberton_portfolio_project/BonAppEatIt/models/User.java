@@ -3,6 +3,9 @@ package com.holberton_portfolio_project.BonAppEatIt.models;
 // jakarta.persistence
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
@@ -54,10 +57,13 @@ public class User extends BaseEntity {
     @Column(name = "password_updated_at", nullable = false)
     private LocalDateTime passwordUpdatedAt;
 
-    @Builder.Default
-    @Getter @Setter
-    @Column(name = "is_admin",nullable = false)
-    private boolean isAdmin = false;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @Builder.Default
     @Getter @Setter
