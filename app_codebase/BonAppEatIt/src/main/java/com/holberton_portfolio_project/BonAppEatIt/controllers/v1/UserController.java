@@ -1,7 +1,7 @@
 package com.holberton_portfolio_project.BonAppEatIt.controllers.v1;
 
-import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreationModel;
-import com.holberton_portfolio_project.BonAppEatIt.dto.UserResponseModel;
+import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreationDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.UserLightResponseDTO;
 
 import com.holberton_portfolio_project.BonAppEatIt.service.UserService;
 
@@ -28,7 +28,6 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor // For constructor injection (UserService object required)
 @RequestMapping("/users")
-@ResponseStatus(HttpStatus.CREATED)
 public class UserController extends BaseV1Controller {
 
     /*
@@ -41,20 +40,21 @@ public class UserController extends BaseV1Controller {
 
     @PostMapping
     @RequestMapping("/register")
-    public UserResponseModel register(@Valid @RequestBody UserCreationModel user) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserLightResponseDTO register(@Valid @RequestBody UserCreationDTO user) {
         return userService.createUser(user);
     }
 
     @GetMapping
     @RequestMapping("/profile")
-    public UserResponseModel getUserById() {
+    public UserLightResponseDTO getUserById() {
         // insert auth data extract here
         return userService.getUserById(id);
     }
 
     @GetMapping
     @RequestMapping("/{id}")
-    public UserResponseModel getUserById(@RequestParam UUID id) {
+    public UserLightResponseDTO getUserById(@RequestParam UUID id) {
         return userService.getUserById(id);
     }
 
