@@ -17,8 +17,8 @@
   </tr>
   <tr>
     <td>S2 - Build the client</td>
-    <td>May 5th 2025</td>
-    <td>June 6th 2025</td>
+    <td>June 30th</td>
+    <td>July 14th</td>
     <td>Build up the client : html pages, CSS styles, js scripts</td>
   </tr>
 </table>
