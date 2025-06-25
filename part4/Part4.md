@@ -30,245 +30,301 @@
     <th align="left" bgcolor="#E8E8E8">USER STORY</th>
     <th align="left" bgcolor="#E8E8E8">TASK</th>
     <th align="left" bgcolor="#E8E8E8">DELIVERABLE</th>
+    <th align="left" bgcolor="#E8E8E8">PRIORITY</th>
     <th align="left" bgcolor="#E8E8E8">STATUS</th>
   </tr>
   <tr>
-    <td rowspan="3">Setup & Configuration</td>
-    <td>Configure PostgreSQL connection and JPA settings</td>
+    <td rowspan="3">Foundation Setup</td>
+    <td>Configure PostgreSQL database connection</td>
     <td>application.properties with DB config</td>
-    <td>Not Started</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Create Repository interfaces for all entities</td>
-    <td>Repository package with 7 repository interfaces</td>
-    <td>Not Started</td>
+    <td>Create database schema/tables</td>
+    <td>SQL migration scripts or JPA auto-generation</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Setup Swagger/OpenAPI documentation</td>
-    <td>API documentation accessible at /swagger-ui</td>
-    <td>Not Started</td>
+    <td>Add Spring Data JPA repositories</td>
+    <td>Repository interfaces for all entities</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="4">Story 1 & 2: Recipe Listing & Filtering</td>
-    <td>Create RecipeService with findAll and filtering methods</td>
-    <td>RecipeService.java with CRUD + filter operations</td>
-    <td>Not Started</td>
+    <td rowspan="2">User Story 1: Recipe List</td>
+    <td>Create RecipeService with findAll method</td>
+    <td>RecipeService.java with basic CRUD operations</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Build RecipeController with GET /api/v1/recipes endpoint</td>
-    <td>REST endpoint returning paginated recipe list</td>
-    <td>Not Started</td>
+    <td>Create RecipeController with GET /api/v1/recipes endpoint</td>
+    <td>REST endpoint returning JSON recipe list</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement filtering by ingredients, tags, prep time</td>
-    <td>Query parameters: ?ingredients=x&tags=y&maxPrepTime=z</td>
-    <td>Not Started</td>
+    <td rowspan="3">User Story 2: Recipe Filtering</td>
+    <td>Add filtering methods to RecipeService</td>
+    <td>Methods for ingredient, tag, and ingredient count filters</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Create RecipeDTO for API responses</td>
-    <td>DTO package with Recipe response objects</td>
-    <td>Not Started</td>
+    <td>Create query parameters in RecipeController</td>
+    <td>GET /api/v1/recipes with query params</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="3">Story 3: Authentication</td>
-    <td>Configure Spring Security with JWT</td>
-    <td>SecurityConfig.java with JWT authentication</td>
-    <td>Not Started</td>
+    <td>Add TagService and IngredientService for filter options</td>
+    <td>Services to provide available tags and ingredients</td>
+    <td>Should Have</td>
+    <td>To Do</td>
+  </tr>
+  <tr>
+    <td rowspan="4">User Story 3: Authentication</td>
+    <td>Configure Spring Security</td>
+    <td>SecurityConfig.java with basic auth setup</td>
+    <td>Must Have</td>
+    <td>To Do</td>
+  </tr>
+  <tr>
+    <td>Create UserService with registration logic</td>
+    <td>UserService.java with password hashing</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
     <td>Create AuthController with login/register endpoints</td>
-    <td>POST /api/v1/auth/login and /register endpoints</td>
-    <td>Not Started</td>
+    <td>POST /api/v1/auth/login and /register</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement UserService with registration/authentication logic</td>
-    <td>UserService.java with password hashing and JWT generation</td>
-    <td>Not Started</td>
+    <td>Add JWT token generation (optional for MVP)</td>
+    <td>JWT-based authentication</td>
+    <td>Could Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="2">Story 4: Recipe Details</td>
-    <td>Enhance RecipeController with GET /api/v1/recipes/{id}</td>
-    <td>Single recipe endpoint with full details</td>
-    <td>Not Started</td>
+    <td rowspan="2">User Story 4: Recipe Details</td>
+    <td>Create GET /api/v1/recipes/{id} endpoint</td>
+    <td>Endpoint returning full recipe details with ingredients</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Create detailed RecipeDTO with ingredients and instructions</td>
-    <td>Comprehensive DTO showing all recipe relationships</td>
-    <td>Not Started</td>
+    <td>Optimize recipe queries to include ingredients and instructions</td>
+    <td>Efficient JPA queries with joins</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="2">Story 7: Admin Features</td>
-    <td>Create TagService and TagController for CRUD operations</td>
-    <td>REST endpoints for tag management</td>
-    <td>Not Started</td>
+    <td rowspan="2">User Story 5: Comments (Basic)</td>
+    <td>Create Comment entity and repository</td>
+    <td>Comment.java model and CommentRepository</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Create IngredientService and IngredientController</td>
-    <td>REST endpoints for ingredient management</td>
-    <td>Not Started</td>
+    <td>Add POST /api/v1/recipes/{id}/comments endpoint</td>
+    <td>Authenticated endpoint for adding comments</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="2">Testing & Data</td>
-    <td>Create database migration scripts or data.sql</td>
-    <td>Sample data for testing API endpoints</td>
-    <td>Not Started</td>
+    <td rowspan="2">User Story 7: Admin Features</td>
+    <td>Create TagController for admin tag creation</td>
+    <td>POST /api/v1/admin/tags endpoint</td>
+    <td>Won't Have (MVP)</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Write integration tests for main endpoints</td>
-    <td>Test classes covering authentication and recipe endpoints</td>
-    <td>Not Started</td>
+    <td>Create IngredientController for admin ingredient creation</td>
+    <td>POST /api/v1/admin/ingredients endpoint</td>
+    <td>Won't Have (MVP)</td>
+    <td>To Do</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Documentation & Testing</td>
+    <td>Add Swagger/OpenAPI documentation</td>
+    <td>Auto-generated API documentation</td>
+    <td>Should Have</td>
+    <td>To Do</td>
+  </tr>
+  <tr>
+    <td>Write basic integration tests</td>
+    <td>Test classes for main endpoints</td>
+    <td>Could Have</td>
+    <td>To Do</td>
   </tr>
 </table>
 
+
 ### SPRINT 2 - Building up the client
+
 
 <table width="100%">
   <tr>
     <th align="left" bgcolor="#E8E8E8">USER STORY</th>
     <th align="left" bgcolor="#E8E8E8">TASK</th>
     <th align="left" bgcolor="#E8E8E8">DELIVERABLE</th>
+    <th align="left" bgcolor="#E8E8E8">PRIORITY</th>
     <th align="left" bgcolor="#E8E8E8">STATUS</th>
   </tr>
   <tr>
-    <td rowspan="4">Frontend Setup</td>
-    <td>Create basic HTML structure with semantic elements</td>
-    <td>index.html with header, nav, main, footer structure</td>
-    <td>Not Started</td>
+    <td rowspan="3">Foundation Setup</td>
+    <td>Create basic HTML structure and navigation</td>
+    <td>index.html with header, nav, main sections</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Setup CSS with CSS Grid/Flexbox for responsive layout</td>
-    <td>styles.css with mobile-first responsive design</td>
-    <td>Not Started</td>
+    <td>Set up CSS framework/base styles</td>
+    <td>styles.css with responsive grid and base styling</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Create JavaScript modules for API communication</td>
-    <td>api.js with fetch-based HTTP client functions</td>
-    <td>Not Started</td>
+    <td>Create JavaScript API service module</td>
+    <td>api.js for making HTTP requests to backend</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement simple client-side routing with hash navigation</td>
-    <td>router.js for SPA-like navigation without page refresh</td>
-    <td>Not Started</td>
+    <td rowspan="3">User Story 1: Recipe List Display</td>
+    <td>Create recipe list component</td>
+    <td>HTML template and JS for displaying recipe cards</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="5">Story 1 & 2: Recipe List & Filtering</td>
-    <td>Create recipe list HTML template and CSS styling</td>
-    <td>Recipe cards with CSS Grid layout, responsive design</td>
-    <td>Not Started</td>
+    <td>Implement recipe card styling</td>
+    <td>CSS for attractive recipe cards with images</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Build DOM manipulation functions for recipe rendering</td>
-    <td>recipes.js with functions to create/update recipe elements</td>
-    <td>Not Started</td>
+    <td>Add loading states and error handling</td>
+    <td>Loading spinners and error messages</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement filter form with event listeners</td>
-    <td>Filter sidebar with ingredient, tag, and time inputs</td>
-    <td>Not Started</td>
+    <td rowspan="4">User Story 2: Recipe Filtering</td>
+    <td>Create filter sidebar/section</td>
+    <td>HTML form with ingredient, tag, and count filters</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Connect filters to API with debounced search</td>
-    <td>Real-time filtering with 300ms debounce on input changes</td>
-    <td>Not Started</td>
+    <td>Implement filter JavaScript logic</td>
+    <td>JS functions to apply filters and update recipe list</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Add pagination with Previous/Next buttons</td>
-    <td>Pagination controls updating recipe list via API calls</td>
-    <td>Not Started</td>
+    <td>Add filter reset functionality</td>
+    <td>Clear filters button and logic</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="5">Story 3 & 6: Authentication UI</td>
-    <td>Create login/register modal with CSS animations</td>
-    <td>Modal overlay with smooth transitions and form validation</td>
-    <td>Not Started</td>
+    <td>Style filters with responsive design</td>
+    <td>Mobile-friendly filter UI</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement form validation with vanilla JavaScript</td>
-    <td>Client-side validation with error message display</td>
-    <td>Not Started</td>
+    <td rowspan="4">User Story 3: Authentication UI</td>
+    <td>Create login/register modal or page</td>
+    <td>HTML forms for login and registration</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Build authentication state management in localStorage</td>
-    <td>auth.js managing JWT token and user state persistence</td>
-    <td>Not Started</td>
+    <td>Implement authentication JavaScript</td>
+    <td>JS for form submission and token handling</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Create dynamic navigation bar showing user status</td>
-    <td>Nav bar toggling between login/logout states</td>
-    <td>Not Started</td>
+    <td>Add form validation</td>
+    <td>Client-side validation for email and password</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement page access control based on auth state</td>
-    <td>JavaScript functions hiding/showing content by user role</td>
-    <td>Not Started</td>
+    <td>Update navigation based on auth state</td>
+    <td>Show/hide login/logout buttons dynamically</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="3">Story 4: Recipe Details</td>
+    <td rowspan="3">User Story 4: Recipe Details Page</td>
     <td>Create recipe detail page template</td>
-    <td>HTML template with sections for ingredients, instructions, etc.</td>
-    <td>Not Started</td>
+    <td>HTML template for full recipe display</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Build recipe detail rendering functions</td>
-    <td>JavaScript functions populating detail template with API data</td>
-    <td>Not Started</td>
+    <td>Implement recipe detail JavaScript</td>
+    <td>JS to fetch and display recipe details</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Add click event handlers for recipe card navigation</td>
-    <td>Recipe cards linking to detail view via hash routing</td>
-    <td>Not Started</td>
+    <td>Style recipe detail page with ingredients list and instructions</td>
+    <td>CSS for readable recipe layout</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="3">Story 5: Comments (Optional)</td>
-    <td>Create comment section HTML and CSS</td>
-    <td>Comment list and form styling for recipe details</td>
-    <td>Not Started</td>
+    <td rowspan="2">User Story 5: Comments Display</td>
+    <td>Add comments section to recipe detail page</td>
+    <td>HTML template for comments display and form</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement comment form submission</td>
-    <td>Form handling comment creation via API</td>
-    <td>Not Started</td>
+    <td>Implement comment submission JavaScript</td>
+    <td>JS for posting and displaying comments</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Add comment display with author and timestamp</td>
-    <td>Dynamic comment rendering with user info</td>
-    <td>Not Started</td>
+    <td rowspan="2">User Story 6: Logout</td>
+    <td>Add logout button functionality</td>
+    <td>Logout button that clears session</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="3">Story 7: Admin Dashboard</td>
-    <td>Create admin dashboard HTML layout</td>
-    <td>Admin-only page with ingredient and tag management sections</td>
-    <td>Not Started</td>
+    <td>Handle logout state changes</td>
+    <td>Update UI when user logs out</td>
+    <td>Must Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Build CRUD forms for ingredients and tags</td>
-    <td>Create/Edit forms with validation and API integration</td>
-    <td>Not Started</td>
+    <td rowspan="3">Polish & Optimization</td>
+    <td>Add responsive design for mobile</td>
+    <td>Mobile-optimized layouts and navigation</td>
+    <td>Should Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td>Implement admin role-based access control</td>
-    <td>JavaScript checking admin status and showing/hiding admin features</td>
-    <td>Not Started</td>
+    <td>Implement search functionality</td>
+    <td>Search bar for finding recipes by name</td>
+    <td>Could Have</td>
+    <td>To Do</td>
   </tr>
   <tr>
-    <td rowspan="4">Polish & Deploy</td>
-    <td>Create custom CSS styling with modern design patterns</td>
-    <td>CSS with variables, smooth animations, and professional appearance</td>
-    <td>Not Started</td>
-  </tr>
-  <tr>
-    <td>Add loading spinners and error handling UI</td>
-    <td>Loading states and user-friendly error messages for API calls</td>
-    <td>Not Started</td>
-  </tr>
-  <tr>
-    <td>Implement responsive design for mobile/tablet/desktop</td>
-    <td>Media queries ensuring usability across all device sizes</td>
-    <td>Not Started</td>
-  </tr>
-  <tr>
-    <td>Deploy static frontend and integrate with deployed backend</td>
-    <td>Live application hosted on GitHub Pages or similar static host</td>
-    <td>Not Started</td>
+    <td>Add animations and micro-interactions</td>
+    <td>CSS transitions and hover effects</td>
+    <td>Could Have</td>
+    <td>To Do</td>
   </tr>
 </table>
