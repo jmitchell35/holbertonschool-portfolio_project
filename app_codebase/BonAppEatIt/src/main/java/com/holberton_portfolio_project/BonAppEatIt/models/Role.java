@@ -26,8 +26,9 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 public class Role extends BaseEntity {
 
-    @Column(name = "name", nullable = false, unique = true)
-    private String name; // "ROLE_ADMIN", "ROLE_USER" following Spring Security convention
+    @Column(name = "role", nullable = false, unique = true)
+    // "ROLE_ADMIN", "ROLE_USER" following Spring Security convention
+    private String role;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
