@@ -33,6 +33,22 @@ public class SpringSecurityConfig {
                 )
                 .logout(LogoutConfigurer::permitAll);
 
+        /*
+        Spring's default User class provided
+        org.springframework.security.core.userdetails.User
+
+        It only stores:
+        - String username  (usually email)
+        - String password
+        - Collection<GrantedAuthority> authorities
+        - boolean flags (enabled, expired, etc.)
+
+        This means that to properly store a session, one has to :
+        - Tell spring how to load users from the DB (Retrieve user data for authentication/login)
+        - Convert the DB's roles to Spring GrantedAuthority format (still during login process)
+        - Map the User entity to Spring UserDetails interface (for proper session storage of the UserDetails object)
+         */
+
         return http.build();
     }
 }
