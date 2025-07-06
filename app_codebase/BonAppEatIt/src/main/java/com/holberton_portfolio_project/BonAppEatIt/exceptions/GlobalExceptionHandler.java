@@ -28,6 +28,24 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private ErrorDTO createErrorResponse(HttpServletRequest request, HttpStatus status, List<ErrorItemDTO> errors) {
+        return ErrorDTO.builder()
+                .timestamp(LocalDateTime.now().toString())
+                .status(status.value())
+                .path(request.getRequestURI())
+                .errors(errors)
+                .build();
+    }
+
+    // Maps custom validation annotations to DTO fields
+    private String mapGlobalErrorToField(String errorCode) {
+        return switch (errorCode) {
+            case "PasswordsMatch" -> "passwordConfirmation";
+            case "EmailsMatch" -> "emailConfirmation";
+            default -> null;  // Unknown global error - treat as business error
+        };
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDTO handleValidationErrors(MethodArgumentNotValidException exception, HttpServletRequest request) {
@@ -120,31 +138,26 @@ public class GlobalExceptionHandler {
             }
         });
 
-        return ErrorDTO.builder()
-                .timestamp(LocalDateTime.now().toString())
-                .status(400)
-                .path(request.getRequestURI())
-                .errors(errors)
-                .build();
-    }
-
-    // Maps custom validation annotations to DTO fields
-    private String mapGlobalErrorToField(String errorCode) {
-        return switch (errorCode) {
-            case "PasswordsMatch" -> "passwordConfirmation";
-            case "EmailsMatch" -> "emailConfirmation";
-            default -> null;  // Unknown global error - treat as business error
-        };
+        return createErrorResponse(request, HttpStatus.BAD_REQUEST, errors);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDTO handleUserAlreadyExists(UserAlreadyExistsException exception, HttpServletRequest request) {
-        return ErrorDTO.builder()
-                .timestamp(LocalDateTime.now().toString())
-                .status(400)
-                .path(request.getRequestURI())
-                .errors(List.of(ErrorItemDTO.businessError(exception.getMessage())))
-                .build();
+        return createErrorResponse(
+                request,
+                HttpStatus.BAD_REQUEST,
+                List.of(ErrorItemDTO.businessError(exception.getMessage()))
+        );
+    }
+
+    @ExceptionHandler(WeakPasswordException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorDTO handleWeakPasswordException(WeakPasswordException exception, HttpServletRequest request) {
+        return createErrorResponse(
+                request,
+                HttpStatus.BAD_REQUEST,
+                List.of(ErrorItemDTO.businessError(exception.getMessage()))
+        );
     }
 }
