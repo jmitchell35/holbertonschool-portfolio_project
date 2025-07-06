@@ -30,4 +30,20 @@ public class PasswordValidationService {
             throw new WeakPasswordException("Password must contain at least one special character");
         }
     }
+
+    private boolean hasUpperCaseCharacter(String password) {
+        return password.matches(".*[A-Z].*");
+    }
+
+    private boolean hasLowerCaseCharacter(String password) {
+        return password.matches(".*[a-z].*");
+    }
+
+    private boolean hasDigit(String password) {
+        return password.matches(".*\\d.*");
+    }
+
+    private boolean hasSpecialChar(String password) {
+        return password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{},.<>?].*");
+    }
 }
