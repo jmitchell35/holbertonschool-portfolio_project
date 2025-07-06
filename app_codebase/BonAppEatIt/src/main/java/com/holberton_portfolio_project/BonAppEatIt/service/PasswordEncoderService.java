@@ -1,0 +1,21 @@
+package com.holberton_portfolio_project.BonAppEatIt.service;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PasswordEncoderService {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public  PasswordEncoderService() {
+        this.bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
+    }
+
+    public String hashPassword(String password) {
+        return bCryptPasswordEncoder.encode(password);
+    }
+
+    public boolean comparePasswords(String rawPassword, String encodedPassword) {
+        return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
+    }
+}
