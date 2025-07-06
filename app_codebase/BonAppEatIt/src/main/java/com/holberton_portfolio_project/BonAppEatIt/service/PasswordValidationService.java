@@ -2,8 +2,10 @@ package com.holberton_portfolio_project.BonAppEatIt.service;
 
 import com.holberton_portfolio_project.BonAppEatIt.domain.PasswordPolicy;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.WeakPasswordException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class PasswordValidationService {
 
