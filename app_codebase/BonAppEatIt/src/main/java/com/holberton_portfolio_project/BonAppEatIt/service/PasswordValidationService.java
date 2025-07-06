@@ -13,5 +13,21 @@ public class PasswordValidationService {
         if (password.length() < policy.getMinLength()) {
             throw new WeakPasswordException("Password must be at least " + policy.getMinLength() + " characters long");
         }
+
+        if (policy.isRequiredUppercase() && !hasUpperCaseCharacter(password)) {
+            throw new WeakPasswordException("Password must contain at least one uppercase character");
+        }
+
+        if (policy.isRequiredLowercase() && !hasLowerCaseCharacter(password)) {
+            throw new WeakPasswordException("Password must contain at least one lowercase character");
+        }
+
+        if (policy.isRequiredDigits() && !hasDigit(password)) {
+            throw new WeakPasswordException("Password must contain at least one digit");
+        }
+
+        if (policy.isRequiredSpecialChars() && !hasSpecialChar(password)) {
+            throw new WeakPasswordException("Password must contain at least one special character");
+        }
     }
 }
