@@ -1,5 +1,6 @@
 package com.holberton_portfolio_project.BonAppEatIt.service;
 
+import com.holberton_portfolio_project.BonAppEatIt.domain.HashedPassword;
 import com.holberton_portfolio_project.BonAppEatIt.domain.PasswordPolicy;
 import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreatedDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreationDTO;
@@ -24,20 +25,19 @@ public class AuthService {
     }
 
     public UserCreatedDTO createUser(UserCreationDTO dto) {
+
+        // Check email is unique
         if (userService.emailAlreadyExists(dto.getEmail())) {
             throw new UserAlreadyExistsException("Email is already registered.");
         }
 
+        // Check password meets business rules
         passwordValidationService.validatePassword(dto.getPassword(), standardPasswordPolicy);
 
-
-        // check password strength (specific method)
         // hash password
-        // propagate exceptions to controller level for proper HTTP response
-        // create user entity from DTO
-        // write to the db and sync
-        // create UserCreatedDTO from entity
+        HashedPassword hashedPassword = new HashedPassword(encodePassword(dto.getPassword()));
 
-        return userService.createUser(dto);
+        // create user entity from DTO
+        return userService.persistUser(dto.getEmail(), hashedPassword);
     }
 }
