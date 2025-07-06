@@ -12,15 +12,19 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final UserService userService;
     private final PasswordValidationService passwordValidationService;
+    private final PasswordEncodingService passwordEncodingService;
     private final PasswordPolicy standardPasswordPolicy;
 
     public AuthService(
             UserService userService,
             PasswordValidationService passwordValidationService,
+            PasswordEncodingService passwordEncodingService,
             @Qualifier("standardPasswordPolicy") PasswordPolicy standardPasswordPolicy
+
             ) {
         this.userService = userService;
         this.passwordValidationService = passwordValidationService;
+        this.passwordEncodingService = passwordEncodingService;
         this.standardPasswordPolicy = standardPasswordPolicy;
     }
 
@@ -35,7 +39,9 @@ public class AuthService {
         passwordValidationService.validatePassword(dto.getPassword(), standardPasswordPolicy);
 
         // hash password
-        HashedPassword hashedPassword = new HashedPassword(encodePassword(dto.getPassword()));
+        HashedPassword hashedPassword = HashedPassword.fromBcryptHashString(
+                passwordEncodingService.hashPassword(dto.getPassword()
+                ));
 
         // create user entity from DTO
         return userService.persistUser(dto.getEmail(), hashedPassword);

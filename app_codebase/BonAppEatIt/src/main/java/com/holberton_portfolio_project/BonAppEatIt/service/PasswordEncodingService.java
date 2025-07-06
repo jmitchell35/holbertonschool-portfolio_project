@@ -4,10 +4,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PasswordEncoderService {
+public class PasswordEncodingService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public  PasswordEncoderService() {
+    public  PasswordEncodingService() {
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
     }
 
