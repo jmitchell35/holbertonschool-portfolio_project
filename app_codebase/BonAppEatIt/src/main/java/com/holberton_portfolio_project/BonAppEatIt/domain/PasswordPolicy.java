@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 public class PasswordPolicy {
     private int minLength;
-    private boolean requireUppercase;
-    private boolean requireLowercase;
-    private boolean requireNumbers;
-    private boolean requireSpecialChars;
+    private boolean requiredUppercase;
+    private boolean requiredLowercase;
+    private boolean requiredDigits;
+    private boolean requiredSpecialChars;
 }

@@ -14,10 +14,10 @@ public class PasswordPolicyConfig {
     public PasswordPolicy standardPasswordPolicy() {
         return PasswordPolicy.builder()
                 .minLength(12)
-                .requireUppercase(true)
-                .requireLowercase(true)
-                .requireNumbers(true)
-                .requireSpecialChars(true)
+                .requiredUppercase(true)
+                .requiredLowercase(true)
+                .requiredDigits(true)
+                .requiredSpecialChars(true)
                 .build();
     }
 }
