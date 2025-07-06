@@ -1,4 +1,4 @@
-package com.holberton_portfolio_project.BonAppEatIt.utils;
+package com.holberton_portfolio_project.BonAppEatIt.domain;
 
 // Lombok boilerplate methods
 import lombok.Getter;
