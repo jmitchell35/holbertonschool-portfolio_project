@@ -37,7 +37,7 @@ public class ErrorResponseService {
         It is then handled differently.
          */
         response.setContentType("application/json");
-        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setStatus(error.getStatus());
 
         // Convert ErrorDTO to JSON string
         String jsonResponse = objectMapper.writeValueAsString(error);
