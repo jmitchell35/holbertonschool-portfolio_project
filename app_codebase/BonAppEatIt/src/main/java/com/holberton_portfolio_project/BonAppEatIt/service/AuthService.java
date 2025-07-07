@@ -28,7 +28,7 @@ public class AuthService {
         this.standardPasswordPolicy = standardPasswordPolicy;
     }
 
-    public UserCreatedDTO createUser(UserCreationDTO dto) {
+    public UserCreatedDTO registerUser(UserCreationDTO dto) {
 
         // Check email is unique
         if (userService.emailAlreadyExists(dto.getEmail())) {

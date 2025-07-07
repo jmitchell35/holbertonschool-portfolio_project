@@ -22,7 +22,7 @@ public class AuthController extends BaseV1Controller {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserCreatedDTO register(@Valid @RequestBody UserCreationDTO user) {
-        return authService.createUser(user);
+        return authService.registerUser(user);
     }
 
     @PostMapping("/login")
