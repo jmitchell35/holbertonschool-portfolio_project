@@ -55,6 +55,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "password_updated_at", nullable = false)
+    @Getter
     private LocalDateTime passwordUpdatedAt;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -63,6 +64,7 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @Getter
     private Set<Role> roles = new HashSet<>();
 
     @Builder.Default
