@@ -15,9 +15,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
     List<Recipe> findByTags_Name(String tagName);
     List<Recipe> findByTags_NameIn(List<String> tagNames);
     List<Recipe> findByTags_NameNotIn(List<String> tagNames);
-    List<Recipe> findByIngredients_Name(String ingredientName);
-    List<Recipe> findByIngredients_NameNotIn(List<String> ingredientNames);
-    List<Recipe> findByIngredients_NameIn(List<String> ingredientNames);
+    List<Recipe> findByRecipeIngredients_Ingredient_IngredientSingular(String ingredientName);
+    List<Recipe> findByRecipeIngredients_Ingredient_IngredientSingularNotIn(List<String> ingredientNames);
+    List<Recipe> findByRecipeIngredients_Ingredient_IngredientSingularIn(List<String> ingredientNames);
 
     /*
     Complex queries may need to write custom SQL queries using Java Persistence Query Language
