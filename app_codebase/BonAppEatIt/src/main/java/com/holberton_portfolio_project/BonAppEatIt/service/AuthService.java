@@ -44,6 +44,6 @@ public class AuthService {
                 ));
 
         // create user entity from DTO
-        return userService.persistUser(dto.getEmail(), hashedPassword);
+        return userService.createUser(dto.getEmail(), hashedPassword);
     }
 }

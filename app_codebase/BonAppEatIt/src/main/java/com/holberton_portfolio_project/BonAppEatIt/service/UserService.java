@@ -13,7 +13,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserCreatedDTO persistUser(String email, HashedPassword password) {
+    public UserCreatedDTO createUser(String email, HashedPassword password) {
         User persistedUser = User.builder()
                 .email(email)
                 .password(String.valueOf(password))
