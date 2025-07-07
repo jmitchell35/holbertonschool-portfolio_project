@@ -2,6 +2,7 @@ package com.holberton_portfolio_project.BonAppEatIt.configuration;
 
 import com.holberton_portfolio_project.BonAppEatIt.constants.ApiRoutes;
 
+import com.holberton_portfolio_project.BonAppEatIt.security.CustomAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+
+    public SpringSecurityConfig(CustomAuthenticationEntryPoint authenticationEntryPoint) {
+        this.authenticationEntryPoint = authenticationEntryPoint;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -23,6 +30,8 @@ public class SpringSecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))  // sessions when needed
                 .httpBasic(Customizer.withDefaults())  // HTTP basic auth
+                .exceptionHandling(ex ->
+                        ex.authenticationEntryPoint(authenticationEntryPoint))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(ApiRoutes.V1.ADMIN + "/**").hasRole("ADMIN")
                         .requestMatchers(ApiRoutes.V1.AUTH + "/**").permitAll()
