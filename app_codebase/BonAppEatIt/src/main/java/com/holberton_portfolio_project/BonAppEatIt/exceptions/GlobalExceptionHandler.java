@@ -2,6 +2,7 @@ package com.holberton_portfolio_project.BonAppEatIt.exceptions;
 
 import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorItemDTO;
+import com.holberton_portfolio_project.BonAppEatIt.service.ErrorResponseService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +27,10 @@ import java.util.List;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    private final ErrorResponseService errorResponseService;
 
-    private ErrorDTO createErrorResponse(HttpServletRequest request, HttpStatus status, List<ErrorItemDTO> errors) {
-        return ErrorDTO.builder()
-                .timestamp(LocalDateTime.now().toString())
-                .status(status.value())
-                .path(request.getRequestURI())
-                .errors(errors)
-                .build();
+    public GlobalExceptionHandler(ErrorResponseService errorResponseService) {
+        this.errorResponseService = errorResponseService;
     }
 
     // Maps custom validation annotations to DTO fields
@@ -138,13 +134,13 @@ public class GlobalExceptionHandler {
             }
         });
 
-        return createErrorResponse(request, HttpStatus.BAD_REQUEST, errors);
+        return errorResponseService.createErrorResponse(request, HttpStatus.BAD_REQUEST, errors);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDTO handleUserAlreadyExists(UserAlreadyExistsException exception, HttpServletRequest request) {
-        return createErrorResponse(
+        return errorResponseService.createErrorResponse(
                 request,
                 HttpStatus.BAD_REQUEST,
                 List.of(ErrorItemDTO.businessError(exception.getMessage()))
@@ -154,7 +150,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(WeakPasswordException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDTO handleWeakPasswordException(WeakPasswordException exception, HttpServletRequest request) {
-        return createErrorResponse(
+        return errorResponseService.createErrorResponse(
                 request,
                 HttpStatus.BAD_REQUEST,
                 List.of(ErrorItemDTO.businessError(exception.getMessage()))
