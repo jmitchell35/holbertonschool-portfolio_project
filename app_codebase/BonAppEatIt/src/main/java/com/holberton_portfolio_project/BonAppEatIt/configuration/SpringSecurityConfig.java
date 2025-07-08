@@ -38,13 +38,17 @@ public class SpringSecurityConfig {
                         .requestMatchers(
                                 HttpMethod.GET,
                                 ApiRoutes.V1.RECIPES,
-                                ApiRoutes.V1.RECIPES + "/{id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}"
+                                ApiRoutes.V1.RECIPES +
+                                        "/{id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}"
                         ).permitAll()
+                        .requestMatchers("/error").permitAll() // Allow errors to flow back to user from any route
                         .anyRequest().authenticated()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/api/v1/auth/logout")        // Custom logout endpoint
-                        .logoutSuccessHandler((request, response, auth) -> {
+                        .logoutSuccessHandler((request,
+                                               response,
+                                               auth) -> {
                             response.setStatus(200);              // Return 200 OK
                             response.getWriter().write("{\"message\":\"Logged out successfully\"}");
                         })
