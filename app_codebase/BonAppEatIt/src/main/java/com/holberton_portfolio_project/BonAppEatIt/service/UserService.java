@@ -7,6 +7,8 @@ import com.holberton_portfolio_project.BonAppEatIt.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -17,6 +19,7 @@ public class UserService {
         User persistedUser = User.builder()
                 .email(email)
                 .password(String.valueOf(password))
+                .passwordUpdatedAt(LocalDateTime.now())
                 .build();
 
         userRepository.save(persistedUser);
