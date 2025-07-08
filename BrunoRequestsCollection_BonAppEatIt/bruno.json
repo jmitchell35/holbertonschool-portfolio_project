@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "BrunoRequestsCollection_BonAppEatIt",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
