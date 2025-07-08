@@ -64,7 +64,7 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    @Getter
+    @Getter @Setter
     private Set<Role> roles = new HashSet<>();
 
     @Builder.Default
