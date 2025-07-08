@@ -2,27 +2,36 @@ package com.holberton_portfolio_project.BonAppEatIt.service;
 
 import com.holberton_portfolio_project.BonAppEatIt.domain.HashedPassword;
 import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreatedDTO;
+import com.holberton_portfolio_project.BonAppEatIt.models.Role;
 import com.holberton_portfolio_project.BonAppEatIt.models.User;
+import com.holberton_portfolio_project.BonAppEatIt.repository.RoleRepository;
 import com.holberton_portfolio_project.BonAppEatIt.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     public UserCreatedDTO createUser(String email, HashedPassword password) {
-        User persistedUser = User.builder()
+        Role defaultRole = roleRepository.findByRole("ROLE_USER")
+                .orElseThrow(() -> new RuntimeException("Default role 'ROLE_USER' not found in the database"));
+
+        User newUser = User.builder()
                 .email(email)
-                .password(String.valueOf(password))
+                .password(password.getValue())
                 .passwordUpdatedAt(LocalDateTime.now())
+                .roles(new HashSet<>(Set.of(defaultRole)))
                 .build();
 
-        userRepository.save(persistedUser);
+        userRepository.save(newUser);
 
         return UserCreatedDTO.builder()
                 .email(email)
