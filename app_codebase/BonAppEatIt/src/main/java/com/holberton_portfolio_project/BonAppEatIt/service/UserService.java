@@ -29,6 +29,8 @@ public class UserService {
                 .password(password.getValue())
                 .passwordUpdatedAt(LocalDateTime.now())
                 .roles(new HashSet<>(Set.of(defaultRole)))
+                .isActive(true)
+                .isVerified(false)
                 .build();
 
         userRepository.save(newUser);
