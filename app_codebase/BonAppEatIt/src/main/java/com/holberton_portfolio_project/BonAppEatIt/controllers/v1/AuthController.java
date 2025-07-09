@@ -7,10 +7,10 @@ import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreationDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.AuthService;
 import com.holberton_portfolio_project.BonAppEatIt.service.ResponseSuccessService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -76,5 +76,16 @@ public class AuthController {
                 request,
                 "Login successful for user " + authObject.getName()
         );
+    }
+
+    @PostMapping("/logout")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseSuccessDTO logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // don't create new session if none exist
+
+        if (session != null) {
+            session.invalidate();
+        }
+        return responseSuccessService.createSuccessResponse(request, "Logged out successfully");
     }
 }
