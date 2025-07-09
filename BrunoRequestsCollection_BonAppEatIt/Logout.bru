@@ -1,0 +1,16 @@
+meta {
+  name: Logout
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://localhost:8443/api/v1/auth/logout
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Cookie: JSESSIONID=B439704FCAACCA58A8A77BA55B0A35EC
+}
