@@ -75,7 +75,7 @@ public class User extends BaseEntity {
     @Builder.Default
     @Getter @Setter
     @Column(name = "is_active", nullable = false)
-    private boolean isActive = false;
+    private boolean isActive = true;
 
     /*
     This is the referencing side of the relationship
