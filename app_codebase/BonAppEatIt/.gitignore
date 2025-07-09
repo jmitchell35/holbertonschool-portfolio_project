@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Keystores, SSL certificates and keys ###
+*.p12
+*.jks
+*.key
+*.crt
+*.pem
+keystore.*
+truststore.*
+
+### Environment files ###
+.env
+.env.local
+.env.production
