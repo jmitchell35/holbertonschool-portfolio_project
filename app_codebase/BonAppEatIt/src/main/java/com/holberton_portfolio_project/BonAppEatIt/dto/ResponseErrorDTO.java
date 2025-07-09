@@ -13,7 +13,7 @@ import java.util.List;
 @Getter @Setter
 @AllArgsConstructor // Full constructor
 @NoArgsConstructor // For Jackson,Spring
-public class ErrorDTO {
+public class ResponseErrorDTO {
     private String timestamp;
     private String path;
     private int status;

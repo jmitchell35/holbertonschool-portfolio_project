@@ -1,7 +1,7 @@
 package com.holberton_portfolio_project.BonAppEatIt.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorItemDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,8 +20,8 @@ public class ErrorResponseService {
         this.objectMapper = objectMapper;
     }
 
-    public ErrorDTO createErrorResponse(HttpServletRequest request, HttpStatus status, List<ErrorItemDTO> errors) {
-        return ErrorDTO.builder()
+    public ResponseErrorDTO createErrorResponse(HttpServletRequest request, HttpStatus status, List<ErrorItemDTO> errors) {
+        return ResponseErrorDTO.builder()
                 .timestamp(LocalDateTime.now().toString())
                 .status(status.value())
                 .path(request.getRequestURI())
@@ -30,7 +30,7 @@ public class ErrorResponseService {
     }
 
     // Needed for HttpServletResponse which doesn't return automatically serializable objects
-    public void writeJsonResponse(HttpServletResponse response, ErrorDTO error) throws IOException {
+    public void writeJsonResponse(HttpServletResponse response, ResponseErrorDTO error) throws IOException {
         /*
         IOException is a checked exception.
         This would occur at a different level than the business exceptions we have dealt with.
@@ -39,7 +39,7 @@ public class ErrorResponseService {
         response.setContentType("application/json");
         response.setStatus(error.getStatus());
 
-        // Convert ErrorDTO to JSON string
+        // Convert ResponseErrorDTO to JSON string
         String jsonResponse = objectMapper.writeValueAsString(error);
 
         // Write JSON to response body

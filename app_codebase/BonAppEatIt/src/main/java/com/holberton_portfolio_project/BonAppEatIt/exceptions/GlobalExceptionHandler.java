@@ -1,6 +1,6 @@
 package com.holberton_portfolio_project.BonAppEatIt.exceptions;
 
-import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorItemDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.ErrorResponseService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorDTO handleValidationErrors(MethodArgumentNotValidException exception, HttpServletRequest request) {
+    public ResponseErrorDTO handleValidationErrors(MethodArgumentNotValidException exception, HttpServletRequest request) {
         /*
         BindingResult is Spring's data binding and validation container
         We start by fetching this validation report object
@@ -139,7 +139,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorDTO handleUserAlreadyExists(UserAlreadyExistsException exception, HttpServletRequest request) {
+    public ResponseErrorDTO handleUserAlreadyExists(UserAlreadyExistsException exception, HttpServletRequest request) {
         return errorResponseService.createErrorResponse(
                 request,
                 HttpStatus.BAD_REQUEST,
@@ -149,7 +149,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(WeakPasswordException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorDTO handleWeakPasswordException(WeakPasswordException exception, HttpServletRequest request) {
+    public ResponseErrorDTO handleWeakPasswordException(WeakPasswordException exception, HttpServletRequest request) {
         return errorResponseService.createErrorResponse(
                 request,
                 HttpStatus.BAD_REQUEST,

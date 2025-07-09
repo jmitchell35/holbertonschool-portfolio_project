@@ -1,6 +1,6 @@
 package com.holberton_portfolio_project.BonAppEatIt.security;
 
-import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorItemDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.ErrorResponseService;
 import jakarta.servlet.ServletException;
@@ -52,7 +52,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
          */
 
-        ErrorDTO error = ErrorDTO.builder()
+        ResponseErrorDTO error = ResponseErrorDTO.builder()
                 .timestamp(LocalDateTime.now().toString())
                 .status(HttpStatus.UNAUTHORIZED.value())
                 .path(request.getRequestURI())
