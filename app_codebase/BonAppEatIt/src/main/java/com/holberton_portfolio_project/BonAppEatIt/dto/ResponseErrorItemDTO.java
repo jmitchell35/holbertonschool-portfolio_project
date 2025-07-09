@@ -9,21 +9,21 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ErrorItemDTO {
+public class ResponseErrorItemDTO {
     private String message;
     private String field;
 
     // "Convenience" constructors :
-    public ErrorItemDTO(String message) {
+    public ResponseErrorItemDTO(String message) {
         this.message = message;
         this.field = null;
     }
 
-    public static ErrorItemDTO businessError(String message) {
-        return new ErrorItemDTO(message);
+    public static ResponseErrorItemDTO businessError(String message) {
+        return new ResponseErrorItemDTO(message);
     }
 
-    public static ErrorItemDTO fieldError(String message, String field) {
-        return new ErrorItemDTO(message, field);
+    public static ResponseErrorItemDTO fieldError(String message, String field) {
+        return new ResponseErrorItemDTO(message, field);
     }
 }

@@ -19,5 +19,5 @@ public class ResponseErrorDTO {
     private int status;
 
     @Builder.Default
-    private List<ErrorItemDTO> errors = new ArrayList<>();
+    private List<ResponseErrorItemDTO> errors = new ArrayList<>();
 }

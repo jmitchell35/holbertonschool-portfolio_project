@@ -1,8 +1,8 @@
 package com.holberton_portfolio_project.BonAppEatIt.exceptions;
 
 import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorDTO;
-import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorItemDTO;
-import com.holberton_portfolio_project.BonAppEatIt.service.ErrorResponseService;
+import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorItemDTO;
+import com.holberton_portfolio_project.BonAppEatIt.service.ResponseErrorService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -27,10 +27,10 @@ import java.util.List;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    private final ErrorResponseService errorResponseService;
+    private final ResponseErrorService responseErrorService;
 
-    public GlobalExceptionHandler(ErrorResponseService errorResponseService) {
-        this.errorResponseService = errorResponseService;
+    public GlobalExceptionHandler(ResponseErrorService responseErrorService) {
+        this.responseErrorService = responseErrorService;
     }
 
     // Maps custom validation annotations to DTO fields
@@ -110,11 +110,11 @@ public class GlobalExceptionHandler {
         }
          */
 
-        List<ErrorItemDTO> errors = new ArrayList<>();
+        List<ResponseErrorItemDTO> errors = new ArrayList<>();
 
         // handle field errors first
         bindingResult.getFieldErrors().forEach(fieldError ->
-                errors.add(ErrorItemDTO.fieldError(
+                errors.add(ResponseErrorItemDTO.fieldError(
                         fieldError.getDefaultMessage(),
                         fieldError.getField()
                 ))
@@ -125,35 +125,35 @@ public class GlobalExceptionHandler {
             // Need a mapping helper function (from global error to confirmation field)
             String errorField = mapGlobalErrorToField(globalError.getCode());
             if (errorField != null) {
-                errors.add(ErrorItemDTO.fieldError(
+                errors.add(ResponseErrorItemDTO.fieldError(
                         globalError.getDefaultMessage(),
                         errorField
                 ));
             } else {
-                errors.add(ErrorItemDTO.businessError(globalError.getDefaultMessage()));
+                errors.add(ResponseErrorItemDTO.businessError(globalError.getDefaultMessage()));
             }
         });
 
-        return errorResponseService.createErrorResponse(request, HttpStatus.BAD_REQUEST, errors);
+        return responseErrorService.createErrorResponse(request, HttpStatus.BAD_REQUEST, errors);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseErrorDTO handleUserAlreadyExists(UserAlreadyExistsException exception, HttpServletRequest request) {
-        return errorResponseService.createErrorResponse(
+        return responseErrorService.createErrorResponse(
                 request,
                 HttpStatus.BAD_REQUEST,
-                List.of(ErrorItemDTO.businessError(exception.getMessage()))
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
         );
     }
 
     @ExceptionHandler(WeakPasswordException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseErrorDTO handleWeakPasswordException(WeakPasswordException exception, HttpServletRequest request) {
-        return errorResponseService.createErrorResponse(
+        return responseErrorService.createErrorResponse(
                 request,
                 HttpStatus.BAD_REQUEST,
-                List.of(ErrorItemDTO.businessError(exception.getMessage()))
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
         );
     }
 }

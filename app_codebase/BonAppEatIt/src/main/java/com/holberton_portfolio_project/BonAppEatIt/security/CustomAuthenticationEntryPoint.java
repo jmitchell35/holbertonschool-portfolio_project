@@ -1,8 +1,8 @@
 package com.holberton_portfolio_project.BonAppEatIt.security;
 
 import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorDTO;
-import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorItemDTO;
-import com.holberton_portfolio_project.BonAppEatIt.service.ErrorResponseService;
+import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorItemDTO;
+import com.holberton_portfolio_project.BonAppEatIt.service.ResponseErrorService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,10 +17,10 @@ import java.util.List;
 
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
-    private final ErrorResponseService errorResponseService;
+    private final ResponseErrorService responseErrorService;
 
-    public CustomAuthenticationEntryPoint(ErrorResponseService errorResponseService) {
-        this.errorResponseService = errorResponseService;
+    public CustomAuthenticationEntryPoint(ResponseErrorService responseErrorService) {
+        this.responseErrorService = responseErrorService;
     }
 
     @SuppressWarnings("RedundantThrows")
@@ -56,10 +56,10 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                 .timestamp(LocalDateTime.now().toString())
                 .status(HttpStatus.UNAUTHORIZED.value())
                 .path(request.getRequestURI())
-                .errors(List.of(ErrorItemDTO.businessError("Authentication required to access this resource")))
+                .errors(List.of(ResponseErrorItemDTO.businessError("Authentication required to access this resource")))
                 .build();
 
         // Write JSON response
-        errorResponseService.writeJsonResponse(response, error);
+        responseErrorService.writeJsonResponse(response, error);
     }
 }

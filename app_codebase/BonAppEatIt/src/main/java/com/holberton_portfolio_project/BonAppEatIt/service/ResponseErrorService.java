@@ -2,7 +2,7 @@ package com.holberton_portfolio_project.BonAppEatIt.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorDTO;
-import com.holberton_portfolio_project.BonAppEatIt.dto.ErrorItemDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseErrorItemDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class ErrorResponseService {
+public class ResponseErrorService {
     private final ObjectMapper objectMapper;
 
-    public  ErrorResponseService(ObjectMapper objectMapper) {
+    public ResponseErrorService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
-    public ResponseErrorDTO createErrorResponse(HttpServletRequest request, HttpStatus status, List<ErrorItemDTO> errors) {
+    public ResponseErrorDTO createErrorResponse(HttpServletRequest request, HttpStatus status, List<ResponseErrorItemDTO> errors) {
         return ResponseErrorDTO.builder()
                 .timestamp(LocalDateTime.now().toString())
                 .status(status.value())
