@@ -27,8 +27,12 @@ public class SpringSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)  // No CSRF for API
                 .cors(Customizer.withDefaults())  // Enable CORS for client/back interactions
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))  // sessions when needed
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(false)
+
+                )  // sessions when needed
                 .httpBasic(Customizer.withDefaults())  // HTTP basic auth
                 .exceptionHandling(ex ->
                         ex.authenticationEntryPoint(authenticationEntryPoint))
