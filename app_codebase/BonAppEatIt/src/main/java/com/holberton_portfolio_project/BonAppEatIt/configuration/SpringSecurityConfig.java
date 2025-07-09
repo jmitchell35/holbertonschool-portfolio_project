@@ -57,17 +57,6 @@ public class SpringSecurityConfig {
                         ).permitAll()
                         .requestMatchers("/error").permitAll() // Allow errors to flow back to user from any route
                         .anyRequest().authenticated()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/api/v1/auth/logout")        // Custom logout endpoint
-                        .logoutSuccessHandler((request,
-                                               response,
-                                               auth) -> {
-                            response.setStatus(200);              // Return 200 OK
-                            response.getWriter().write("{\"message\":\"Logged out successfully\"}");
-                        })
-                        .invalidateHttpSession(true)             // Destroy session
-                        .deleteCookies("JSESSIONID")             // Remove session cookie
                 );
 
         /*
