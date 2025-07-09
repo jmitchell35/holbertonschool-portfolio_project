@@ -20,3 +20,13 @@ FROM users u, roles r
 WHERE u.email = 'th75plu4a@mozmail.com'
   AND r.role = 'ROLE_ADMIN'
 ON CONFLICT DO NOTHING;
+
+-- Also link to user role
+INSERT INTO user_roles (user_id, role_id)
+SELECT
+    u.user_id,
+    r.role_id
+FROM users u, roles r
+WHERE u.email = 'th75plu4a@mozmail.com'
+  AND r.role = 'ROLE_USER'
+ON CONFLICT DO NOTHING;
