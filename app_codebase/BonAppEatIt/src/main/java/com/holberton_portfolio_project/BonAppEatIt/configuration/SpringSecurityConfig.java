@@ -32,7 +32,17 @@ public class SpringSecurityConfig {
                 .httpBasic(Customizer.withDefaults())  // HTTP basic auth
                 .exceptionHandling(ex ->
                         ex.authenticationEntryPoint(authenticationEntryPoint))
+                /*
+                Modern HTTPS, replaces deprecated :
+                .requiresChannel(channel ->
+                    channel.anyRequest().requiresSecure())
+                 */
+                .redirectToHttps(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
+                        /*
+                         Role "ADMIN" is automatically matched to ROLE_ADMIN through the DB.
+                         Alternative syntax could be .hasAuthority("ROLE_ADMIN")
+                         */
                         .requestMatchers(ApiRoutes.V1.ADMIN + "/**").hasRole("ADMIN")
                         .requestMatchers(ApiRoutes.V1.AUTH + "/**").permitAll()
                         .requestMatchers(
