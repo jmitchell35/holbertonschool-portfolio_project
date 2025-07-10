@@ -29,7 +29,7 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 public class Unit extends BaseEntity {
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
     @Builder.Default
