@@ -2,7 +2,6 @@ package com.holberton_portfolio_project.BonAppEatIt.models;
 
 // jakarta.persistence
 import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
@@ -35,10 +34,10 @@ import java.util.Set;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Ingredient extends BaseEntity {
-    @Column(name = "ingredient_singular")
+    @Column(name = "ingredient_singular", unique = true, nullable = false)
     private String ingredientSingular;
 
-    @Column(name = "ingredient_plural")
+    @Column(name = "ingredient_plural", nullable = false)
     private String ingredientPlural;
 
     @Column(name = "available_in_january")
