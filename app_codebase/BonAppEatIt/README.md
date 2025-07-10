@@ -59,6 +59,13 @@ It will create a `.ssl` directory in your home directory if it doesn't already e
 
 In case you can't properly access the env variables when running the app you may have to define them as IDE env variables.
 
+Create the DB :
+
+```bash
+# !!! This also deletes any existing dev_version of the db
+./setup-dev-db.sh
+```
+
 Before running the app, make sure you have your DB service running :
 ```bash
 sudo systemctl start postgresql
