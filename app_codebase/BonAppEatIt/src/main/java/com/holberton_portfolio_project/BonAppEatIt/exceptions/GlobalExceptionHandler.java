@@ -156,4 +156,17 @@ public class GlobalExceptionHandler {
                 List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
         );
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseErrorDTO handleIllegalArgumentException(
+            IllegalArgumentException exception,
+            HttpServletRequest request
+    ) {
+        return responseErrorService.createErrorResponse(
+                request,
+                HttpStatus.BAD_REQUEST,
+                List.of(ResponseErrorItemDTO.businessError("Invalid request parameter: " + exception.getMessage()))
+        );
+    }
 }
