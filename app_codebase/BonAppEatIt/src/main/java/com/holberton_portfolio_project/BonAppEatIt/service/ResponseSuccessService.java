@@ -29,4 +29,9 @@ public class ResponseSuccessService {
     public ResponseSuccessDTO createSuccessResponse(HttpServletRequest request, String message) {
         return createSuccessResponse(request, HttpStatus.OK, message, null);
     }
+
+    // Convenience: default status and message
+    public ResponseSuccessDTO createSuccessResponse(HttpServletRequest request, Object data) {
+        return createSuccessResponse(request, HttpStatus.OK, "Success", data);
+    }
 }
