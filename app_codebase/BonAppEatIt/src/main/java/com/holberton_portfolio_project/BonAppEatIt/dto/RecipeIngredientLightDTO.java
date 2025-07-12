@@ -9,6 +9,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class RecipeIngredientLightDTO {
     private IngredientDTO ingredient;
-    private UnitDTO unit;
+    private String unit;
     private short quantity;
 }
