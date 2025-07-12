@@ -119,10 +119,23 @@ public class RecipeSpecifications {
             if (ingredients.isEmpty()) {
                 return criteriaBuilder.conjunction();
             }
-            Join<Recipe, RecipeIngredient> recipeIngredientsJoin = root.join("recipeIngredients");
-            Join<RecipeIngredient, Ingredient> ingredientJoin = recipeIngredientsJoin.join("ingredient");
 
-            return ingredientJoin.get("ingredientSingular").in(ingredients);
+            List<Predicate> predicates = new ArrayList<>();
+
+            for (String ingredient : ingredients) {
+                Subquery<Long> subquery = query.subquery(Long.class);
+                Root<Recipe> subRoot = subquery.from(Recipe.class);
+                Join<Recipe, RecipeIngredient> subRecipeIngredientJoin = subRoot.join("recipeIngredients");
+                Join<RecipeIngredient, Ingredient> subIngredientJoin = subRecipeIngredientJoin.join("ingredient");
+
+                subquery.select(subRoot.get("id"))
+                        .where(criteriaBuilder.and(
+                                criteriaBuilder.equal(subRoot.get("id"), root.get("id")),
+                                criteriaBuilder.equal(subIngredientJoin.get("ingredientSingular"), ingredient)
+                        ));
+                predicates.add(criteriaBuilder.exists(subquery));
+            }
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
 
