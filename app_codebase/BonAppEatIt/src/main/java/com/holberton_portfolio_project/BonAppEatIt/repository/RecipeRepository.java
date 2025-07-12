@@ -165,7 +165,4 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID>, JpaSpecif
     List<Recipe> findAll(Specification<Recipe> spec);
     long count(Specification<Recipe> spec);
      */
-
-
-
 }
