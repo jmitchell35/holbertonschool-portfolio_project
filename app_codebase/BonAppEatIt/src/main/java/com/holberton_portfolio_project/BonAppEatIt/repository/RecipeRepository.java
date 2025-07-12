@@ -2,6 +2,7 @@ package com.holberton_portfolio_project.BonAppEatIt.repository;
 
 import com.holberton_portfolio_project.BonAppEatIt.models.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import java.util.UUID;
 import java.util.List;
 
 @Repository
-public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
+public interface RecipeRepository extends JpaRepository<Recipe, UUID>, JpaSpecificationExecutor<Recipe> {
     List<Recipe> findByTags_Name(String tagName);
     List<Recipe> findByTags_NameIn(List<String> tagNames);
     List<Recipe> findByTags_NameNotIn(List<String> tagNames);
@@ -152,5 +153,19 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
     WHERE r.id = :recipeId
     """)
     Optional<Recipe> findByIdWithAllDetails(@Param("recipeId") UUID recipeId);
+
+    /*
+    Queries can require complex combinations of WHERE clauses. For filtering for example.
+    This can be handled gracefully using the Specification interface.
+    These specifications can then be passed as query methods parameters.
+    This is why JpaSpecificationExecutor has been added above
+
+    It provides :
+    Page<Recipe> findAll(Specification<Recipe> spec, Pageable pageable);
+    List<Recipe> findAll(Specification<Recipe> spec);
+    long count(Specification<Recipe> spec);
+     */
+
+
 
 }
