@@ -7,8 +7,6 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class RecipeIngredientLightDTO {
-    private IngredientDTO ingredient;
-    private UnitDTO unit;
-    private short quantity;
+public class UnitDTO {
+    private String name;
 }
