@@ -1,9 +1,13 @@
 package com.holberton_portfolio_project.BonAppEatIt.controllers.v1;
 
 import com.holberton_portfolio_project.BonAppEatIt.constants.ApiRoutes;
+import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeCreateDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeFiltersDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeLightDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseSuccessDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.RecipeService;
+import com.holberton_portfolio_project.BonAppEatIt.service.ResponseSuccessService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,6 +17,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(ApiRoutes.V1.RECIPES)
 @Validated
 public class RecipeController {
-
+    private final ResponseSuccessService responseSuccessService;
     private final RecipeService recipeService;
 
     /*
@@ -54,7 +60,8 @@ public class RecipeController {
     }
      */
     @GetMapping
-    public Page<RecipeLightDTO> getAllRecipesPaginated(
+    public ResponseSuccessDTO getAllRecipesPaginated(
+            HttpServletRequest request,
             @PageableDefault(
                     page = 0,
                     size = 20,
@@ -63,12 +70,28 @@ public class RecipeController {
             ) Pageable pageable,
             @ModelAttribute @Valid RecipeFiltersDTO filters
             ) {
-        return recipeService.findFilteredRecipes(filters, pageable);
+
+        Page<RecipeLightDTO> recipes = recipeService.findFilteredRecipes(filters, pageable);
+
+        return responseSuccessService.createSuccessResponse(
+                request,
+                recipes
+        );
     }
 
-//    @PostMapping
-//    public RecipeLightDTO createRecipe(@Valid @RequestBody RecipeCreateDTO recipeLightDTO) {}
-//
+    @PostMapping
+    public ResponseSuccessDTO createRecipe(
+            HttpServletRequest request,
+            @Valid @RequestBody RecipeCreateDTO recipeCreateDTO
+    ) {
+        RecipeLightDTO newRecipe =  recipeService.createRecipe(recipeCreateDTO);
+
+        return responseSuccessService.createSuccessResponse(
+                request,
+                "Votre recette a bien été enregistrée"
+        );
+    }
+
 //    @PutMapping
 //    public RecipeLightDTO updateRecipe(@Valid @RequestBody RecipeLightDTO recipeLightDTO) {}
 
