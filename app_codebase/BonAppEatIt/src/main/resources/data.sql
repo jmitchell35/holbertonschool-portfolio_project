@@ -419,3 +419,17 @@ VALUES
     (gen_random_uuid(), 'moutarde', 'moutardes', true, true, true, true, true, true, true, true, true, true, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (gen_random_uuid(), 'mayonnaise', 'mayonnaises', true, true, true, true, true, true, true, true, true, true, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 ON CONFLICT (ingredient_singular) DO NOTHING;
+
+-- Base tags
+INSERT INTO tags (tag_id, name, background_color_hex, font_color_hex, created_at, updated_at)
+VALUES
+    (gen_random_uuid(),'Cuisine italienne','#009246','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine française','#002654','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine indienne','#FF9933','#128807',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine japonaise','#FFFFFF','#BC002D',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine chinoise','#DE2812','#FFDC00',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine végétarienne','#00D668','#00572A',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine étatsunienne','#113765','#B52047',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine canadienne','#D63125','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'Cuisine québécoise','#0843A7','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+ON CONFLICT (name) DO NOTHING;
