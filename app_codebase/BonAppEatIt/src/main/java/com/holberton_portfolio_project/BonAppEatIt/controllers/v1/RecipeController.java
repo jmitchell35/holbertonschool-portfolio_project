@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -82,13 +83,17 @@ public class RecipeController {
     @PostMapping
     public ResponseSuccessDTO createRecipe(
             HttpServletRequest request,
+            Authentication auth,
             @Valid @RequestBody RecipeCreateDTO recipeCreateDTO
     ) {
-        RecipeLightDTO newRecipe =  recipeService.createRecipe(recipeCreateDTO);
+        String publishingUser = auth.getName();
+
+        RecipeLightDTO newRecipe =  recipeService.createRecipe(recipeCreateDTO, publishingUser);
 
         return responseSuccessService.createSuccessResponse(
                 request,
-                "Votre recette a bien été enregistrée"
+                "Votre recette a bien été enregistrée",
+                newRecipe
         );
     }
 
