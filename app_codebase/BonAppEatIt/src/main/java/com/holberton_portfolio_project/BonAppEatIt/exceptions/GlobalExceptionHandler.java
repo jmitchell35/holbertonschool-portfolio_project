@@ -170,10 +170,10 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(PublisherNotFound.class)
+    @ExceptionHandler(PublisherNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseErrorDTO handlePublisherNotFound(
-            PublisherNotFound exception,
+            PublisherNotFoundException exception,
             HttpServletRequest request
     ) {
         return responseErrorService.createErrorResponse(
@@ -192,6 +192,32 @@ public class GlobalExceptionHandler {
         return responseErrorService.createErrorResponse(
                 request,
                 HttpStatus.FORBIDDEN,
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
+        );
+    }
+
+    @ExceptionHandler(IngredientNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseErrorDTO handleIngredientNotFoundException(
+            IngredientNotFoundException exception,
+            HttpServletRequest request
+    ){
+        return responseErrorService.createErrorResponse(
+                request,
+                HttpStatus.NOT_FOUND,
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
+        );
+    }
+
+    @ExceptionHandler(UnitNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseErrorDTO handleUnitNotFoundException(
+            UnitNotFoundException exception,
+            HttpServletRequest request
+    ) {
+        return responseErrorService.createErrorResponse(
+                request,
+                HttpStatus.NOT_FOUND,
                 List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
         );
     }
