@@ -40,6 +40,9 @@ public class Tag extends BaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "color_hex", length = 7, nullable = false)  // For UI theming
-    private String colorHex;
+    @Column(name = "background_color_hex", length = 7, nullable = false)  // For UI theming
+    private String backgroundColorHex;
+
+    @Column(name = "font_color_hex", length = 7, nullable = false)  // For UI theming
+    private String fontColorHex;
 }

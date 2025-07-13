@@ -15,5 +15,5 @@ public class InstructionInputDTO {
     However, frontend js consider all numbers as 64-bit floats.
     PostgreSQL also stores Integers efficiently if inferior to a max Short value.
      */
-    private Integer stepNumber;
+    private int stepNumber;
 }

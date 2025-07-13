@@ -44,14 +44,15 @@ public class User extends BaseEntity {
 
     @Getter @Setter
     @Column(name = "email", nullable = false, unique = true)
-    @Email(message = "Email must be valid")
-    @NotBlank(message = "Email field is required")
     private String email;
+
+    @Getter @Setter
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
 
     @Getter // creates getValue() getter method
     // store bcrypt hash with 3-char work factor, future algo safe with default length value 255
     @Column(name = "password", nullable = false) // length = 255 implicit
-    @NotBlank
     private String password;
 
     @Column(name = "password_updated_at", nullable = false)

@@ -12,5 +12,6 @@ import java.util.UUID;
 public class TagDTO {
     private UUID id;
     private String name;
-    private String colorHex;
+    private String backgroundColorHex;
+    private String fontColorHex;
 }
