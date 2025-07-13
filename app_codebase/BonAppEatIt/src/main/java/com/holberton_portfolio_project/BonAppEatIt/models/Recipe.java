@@ -24,7 +24,6 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Builder.Default;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -47,7 +46,7 @@ public class Recipe extends BaseEntity {
     private int prepTime;
 
     @Column(name = "servings", nullable = false)
-    private String servings;
+    private int servings;
 
     @Column(name = "publisher_id")
     private String publisher;
