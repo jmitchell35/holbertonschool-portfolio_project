@@ -169,4 +169,30 @@ public class GlobalExceptionHandler {
                 List.of(ResponseErrorItemDTO.businessError("Invalid request parameter: " + exception.getMessage()))
         );
     }
+
+    @ExceptionHandler(PublisherNotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseErrorDTO handlePublisherNotFound(
+            PublisherNotFound exception,
+            HttpServletRequest request
+    ) {
+        return responseErrorService.createErrorResponse(
+                request,
+                HttpStatus.NOT_FOUND,
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
+        );
+    }
+
+    @ExceptionHandler(UserImpersonationException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseErrorDTO handleUserImpersonationException(
+            UserImpersonationException exception,
+            HttpServletRequest request
+    ) {
+        return responseErrorService.createErrorResponse(
+                request,
+                HttpStatus.FORBIDDEN,
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
+        );
+    }
 }
