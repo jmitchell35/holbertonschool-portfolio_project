@@ -221,4 +221,17 @@ public class GlobalExceptionHandler {
                 List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
         );
     }
+
+    @ExceptionHandler(TagNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseErrorDTO handleTagNotFoundException(
+            TagNotFoundException exception,
+            HttpServletRequest request
+    ) {
+        return responseErrorService.createErrorResponse(
+                request,
+                HttpStatus.NOT_FOUND,
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
+        );
+    }
 }
