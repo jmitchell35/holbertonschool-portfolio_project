@@ -21,5 +21,5 @@ public class UserLightDTO {
     private boolean isActive;
 
     @Builder.Default
-    private Set<CollectionUserLightNestedDTO> collections = new HashSet<>();
+    private Set<CollectionLightDTO> collections = new HashSet<>();
 }
