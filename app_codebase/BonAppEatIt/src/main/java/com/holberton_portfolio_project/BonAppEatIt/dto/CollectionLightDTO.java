@@ -10,7 +10,7 @@ import java.util.UUID;
 @Builder
 @Getter @Setter
 @AllArgsConstructor
-public class CollectionUserLightNestedDTO {
+public class CollectionLightDTO {
     private UUID id;
     private String name;
 }
