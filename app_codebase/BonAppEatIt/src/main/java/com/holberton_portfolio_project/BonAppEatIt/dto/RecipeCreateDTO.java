@@ -28,7 +28,7 @@ public class RecipeCreateDTO {
     private int servings;
 
     @NotBlank(message = "Please reference the publisher")
-    private UUID publisher;
+    private String publisher;
 
     private Set<UUID> collectionIds = new HashSet<>();
     private Set<UUID> tagIds = new HashSet<>();

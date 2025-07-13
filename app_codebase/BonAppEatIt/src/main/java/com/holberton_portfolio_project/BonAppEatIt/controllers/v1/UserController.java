@@ -27,20 +27,4 @@ public class UserController {
     Instead of coding it we can use Lombok's AllArgsConstructor
     */
     private final UserService userService;
-
-
-
-    //@GetMapping("/profile")
-    //@ResponseStatus(HttpStatus.OK)
-    //public UserProfileDTO getUserById() {
-        // insert auth data extract here
-        //return userService.getUserById(id);
-    //}
-
-    //@GetMapping("/{id}")
-    //@ResponseStatus(HttpStatus.OK)
-    //public UserLightDTO getUserById(@RequestParam UUID id) {
-        //return userService.getUserById(id);
-    //}
-
 }

@@ -35,6 +35,11 @@ public class AuthService {
             throw new UserAlreadyExistsException("Email is already registered.");
         }
 
+        // Check username is unique
+        if (userService.usernameAlreadyExists(dto.getUsername())) {
+            throw new UserAlreadyExistsException("Username is already registered.");
+        }
+
         // Check password meets business rules
         passwordValidationService.validatePassword(dto.getPassword(), standardPasswordPolicy);
 

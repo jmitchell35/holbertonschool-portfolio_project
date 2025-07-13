@@ -22,6 +22,9 @@ public class UserCreationDTO {
     @NotBlank(message = "Email confirmation is required")
     private String emailConfirmation;
 
+    @NotBlank(message = "Username is required")
+    private String username;
+
     @NotBlank(message = "Password is required")
     @Length(min = 12, max = 255, message = "Password should be at least 12 characters long")
     private String password;

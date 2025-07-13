@@ -44,4 +44,8 @@ public class UserService {
     boolean emailAlreadyExists(String email) {
         return userRepository.existsByEmail(email);
     }
+
+    boolean usernameAlreadyExists(String username) {
+        return userRepository.existsByUsername(username);
+    }
 }

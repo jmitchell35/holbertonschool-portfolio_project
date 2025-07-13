@@ -48,7 +48,7 @@ public class Recipe extends BaseEntity {
     @Column(name = "servings", nullable = false)
     private int servings;
 
-    @Column(name = "publisher_id")
+    @Column(name = "publisher_username")
     private String publisher;
 
     @Builder.Default

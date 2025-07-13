@@ -55,13 +55,9 @@ public class RecipeService {
         Specification<Recipe> spec = (root, query, criteriaBuilder) ->
                 criteriaBuilder.conjunction();
 
-        if (filters.getMaxPrepTime() != null) {
-            spec = spec.and(RecipeSpecifications.hasMaxPrepTime(filters.getMaxPrepTime()));
-        }
-
-        if (filters.getMaxIngredients() != null) {
-            spec = spec.and(RecipeSpecifications.maxIngredients(filters.getMaxIngredients()));
-        }
+        spec = spec.and(RecipeSpecifications.hasMaxPrepTime(filters.getMaxPrepTime()));
+        spec = spec.and(RecipeSpecifications.maxIngredients(filters.getMaxIngredients()));
+        spec = spec.and(RecipeSpecifications.hasSeasonalIngredients(filters.getMonth()));
 
         if (filters.getTags() != null && !filters.getTags().isEmpty()) {
             spec = spec.and(RecipeSpecifications.hasTags(filters.getTags()));
@@ -73,10 +69,6 @@ public class RecipeService {
 
         if (filters.getIncludeIngredients() != null && !filters.getIncludeIngredients().isEmpty()) {
             spec = spec.and(RecipeSpecifications.hasIngredients(filters.getIncludeIngredients()));
-        }
-
-        if (filters.getMonth() != null) {
-            spec = spec.and(RecipeSpecifications.hasSeasonalIngredients(filters.getMonth()));
         }
 
         Page<Recipe> recipes = recipeRepository.findAll(spec, pageable);
@@ -91,7 +83,7 @@ public class RecipeService {
                 .name(dto.getName())
                 .prepTime(dto.getPrepTime())
                 .servings(dto.getServings())
-                .publisher(String.valueOf(dto.getPublisher()))
+                .publisher(dto.getPublisher())
                 .build();
 
         Set<Instruction> instructions = buildInstructions(dto.getInstructions(), recipe);
@@ -110,13 +102,13 @@ public class RecipeService {
         return recipeMapper.toOutputDTO(savedRecipe);
     }
 
-    private void validatePublisher(UUID recipePublisher, String publishingEmail) {
+    private void validatePublisher(String recipePublisher, String publishingEmail) {
         Optional<User> publishingUser = userRepository.findByEmail(publishingEmail);
         if (publishingUser.isEmpty()) {
             throw new PublisherNotFoundException("Publishing user not found");
         }
 
-        if (!publishingUser.get().getId().equals(recipePublisher)) {
+        if (!publishingUser.get().getUsername().equals(recipePublisher)) {
             throw new UserImpersonationException("Recipe publisher does not belong to this publisher");
         }
     }
