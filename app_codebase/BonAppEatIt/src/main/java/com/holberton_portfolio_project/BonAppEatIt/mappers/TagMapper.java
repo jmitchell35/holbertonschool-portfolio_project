@@ -12,7 +12,8 @@ public class TagMapper {
     public TagDTO toTagDTO(Tag tag) {
         return TagDTO.builder()
                 .name(tag.getName())
-                .colorHex(tag.getColorHex())
+                .backgroundColorHex(tag.getBackgroundColorHex())
+                .fontColorHex(tag.getFontColorHex())
                 .build();
     }
 
