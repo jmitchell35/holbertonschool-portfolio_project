@@ -2,7 +2,9 @@ package com.holberton_portfolio_project.BonAppEatIt.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
+@Getter
 public class InstructionInputDTO {
     @NotBlank(message = "Instructions cannot be empty")
     private String text;
