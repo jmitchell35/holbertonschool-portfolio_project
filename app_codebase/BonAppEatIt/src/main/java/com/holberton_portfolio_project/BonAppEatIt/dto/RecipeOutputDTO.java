@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @AllArgsConstructor
-public class RecipeLightDTO {
+public class RecipeOutputDTO {
     private UUID id;
     private String name;
     private int prepTime;
@@ -22,7 +22,7 @@ public class RecipeLightDTO {
     private Set<TagDTO> tags = new HashSet<>();
 
     @Builder.Default
-    private Set<RecipeIngredientLightDTO> recipeIngredients = new HashSet<>();
+    private Set<RecipeIngredientOutputDTO> recipeIngredients = new HashSet<>();
 
     private LocalDateTime createdAt;
 }

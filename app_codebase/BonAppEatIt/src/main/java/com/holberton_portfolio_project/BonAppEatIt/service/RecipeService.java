@@ -3,8 +3,8 @@ package com.holberton_portfolio_project.BonAppEatIt.service;
 import com.holberton_portfolio_project.BonAppEatIt.dto.InstructionInputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeCreateDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeFiltersDTO;
-import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeIngredientLightDTO;
-import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeLightDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeIngredientInputDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeOutputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.IngredientNotFoundException;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.PublisherNotFoundException;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.TagNotFoundException;
@@ -51,7 +51,7 @@ public class RecipeService {
     private final CollectionRepository collectionRepository;
 
 
-    public Page<RecipeLightDTO> findFilteredRecipes(RecipeFiltersDTO filters, Pageable pageable) {
+    public Page<RecipeOutputDTO> findFilteredRecipes(RecipeFiltersDTO filters, Pageable pageable) {
         Specification<Recipe> spec = (root, query, criteriaBuilder) ->
                 criteriaBuilder.conjunction();
 
@@ -81,10 +81,10 @@ public class RecipeService {
 
         Page<Recipe> recipes = recipeRepository.findAll(spec, pageable);
 
-        return recipeMapper.toLightDTO(recipes);
+        return recipeMapper.toOutputDTO(recipes);
     }
 
-    public RecipeLightDTO createRecipe(RecipeCreateDTO dto, String publishingEmail) {
+    public RecipeOutputDTO createRecipe(RecipeCreateDTO dto, String publishingEmail) {
         validatePublisher(dto.getPublisher(), publishingEmail);
 
         Recipe recipe = Recipe.builder()
@@ -107,7 +107,7 @@ public class RecipeService {
 
         Recipe savedRecipe = recipeRepository.save(recipe);
 
-        return recipeMapper.toLightDTO(savedRecipe);
+        return recipeMapper.toOutputDTO(savedRecipe);
     }
 
     private void validatePublisher(UUID recipePublisher, String publishingEmail) {
@@ -132,18 +132,18 @@ public class RecipeService {
     }
 
     private Set<RecipeIngredient> buildRecipeIngredients(
-            Set<RecipeIngredientLightDTO> recipeIngredients,
+            Set<RecipeIngredientInputDTO> recipeIngredients,
             Recipe recipe
     ) {
         return recipeIngredients.stream()
                 .map(recipeIngredient -> {
-                    Ingredient ingredient = ingredientRepository.findById(recipeIngredient.getIngredient().getId())
+                    Ingredient ingredient = ingredientRepository.findById(recipeIngredient.getIngredientId())
                             .orElseThrow(() -> new IngredientNotFoundException(
-                                    recipeIngredient.getIngredient().getId() + " " +
-                                            recipeIngredient.getIngredient().getIngredientSingular() + " not found"));
-                    Unit unit = unitRepository.findById(recipeIngredient.getUnit().getId())
-                            .orElseThrow(() -> new UnitNotFoundException(recipeIngredient.getUnit().getId() + " " +
-                                    recipeIngredient.getUnit().getName() + " not found"));
+                                    recipeIngredient.getIngredientId() + " " +
+                                            recipeIngredient.getIngredientId() + " not found"));
+                    Unit unit = unitRepository.findById(recipeIngredient.getUnitId())
+                            .orElseThrow(() -> new UnitNotFoundException(recipeIngredient.getUnitId() + " " +
+                                    recipeIngredient.getUnitId() + " not found"));
 
                     return RecipeIngredient.builder()
                             .recipe(recipe)

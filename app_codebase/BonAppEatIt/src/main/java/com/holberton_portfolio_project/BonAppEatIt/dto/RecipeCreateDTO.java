@@ -37,5 +37,5 @@ public class RecipeCreateDTO {
     private Set<InstructionInputDTO> instructions;
 
     @NotEmpty(message = "Please provide an ingredients list")
-    private Set<RecipeIngredientLightDTO> recipeIngredients;
+    private Set<RecipeIngredientInputDTO> recipeIngredients;
 }

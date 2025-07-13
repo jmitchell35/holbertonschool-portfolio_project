@@ -3,7 +3,7 @@ package com.holberton_portfolio_project.BonAppEatIt.controllers.v1;
 import com.holberton_portfolio_project.BonAppEatIt.constants.ApiRoutes;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeCreateDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeFiltersDTO;
-import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeLightDTO;
+import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeOutputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseSuccessDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.RecipeService;
 import com.holberton_portfolio_project.BonAppEatIt.service.ResponseSuccessService;
@@ -72,7 +72,7 @@ public class RecipeController {
             @ModelAttribute @Valid RecipeFiltersDTO filters
             ) {
 
-        Page<RecipeLightDTO> recipes = recipeService.findFilteredRecipes(filters, pageable);
+        Page<RecipeOutputDTO> recipes = recipeService.findFilteredRecipes(filters, pageable);
 
         return responseSuccessService.createSuccessResponse(
                 request,
@@ -88,7 +88,7 @@ public class RecipeController {
     ) {
         String publishingUser = auth.getName();
 
-        RecipeLightDTO newRecipe =  recipeService.createRecipe(recipeCreateDTO, publishingUser);
+        RecipeOutputDTO newRecipe =  recipeService.createRecipe(recipeCreateDTO, publishingUser);
 
         return responseSuccessService.createSuccessResponse(
                 request,
