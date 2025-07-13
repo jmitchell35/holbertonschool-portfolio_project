@@ -16,7 +16,7 @@ public class RecipeLightDTO {
     private UUID id;
     private String name;
     private int prepTime;
-    private String servings;
+    private int servings;
 
     @Builder.Default
     private Set<TagDTO> tags = new HashSet<>();
