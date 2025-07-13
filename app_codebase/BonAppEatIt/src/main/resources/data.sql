@@ -6,9 +6,10 @@ VALUES
     ON CONFLICT (role) DO NOTHING;
 
 -- Create Admin user
-INSERT INTO users (user_id, email, password, password_updated_at, is_verified, is_active, created_at, updated_at)
+INSERT INTO users (user_id, email, username, password, password_updated_at, is_verified, is_active, created_at, updated_at)
 VALUES
-    (gen_random_uuid(), 'th75plu4a@mozmail.com', '$2a$12$gcnoUWbp2JkvkcuUSTv8R.EZIyZZBtsWhnTE5NPZs42CiYRX26yWu', CURRENT_TIMESTAMP, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    (gen_random_uuid(), 'th75plu4a@mozmail.com', 'admin_th75plu4a','$2a$12$gcnoUWbp2JkvkcuUSTv8R.EZIyZZBtsWhnTE5NPZs42CiYRX26yWu', CURRENT_TIMESTAMP, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(), 'test@example.com','test_user' ,'$2a$12$WuOOclBlqkaBpFZg5gp/pejTElxK.W42iZxXY7eXGQqY4sA296nne', CURRENT_TIMESTAMP, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 ON CONFLICT (email) DO NOTHING;
 
 -- Link admin user to admin role using subquery
@@ -31,13 +32,7 @@ WHERE u.email = 'th75plu4a@mozmail.com'
   AND r.role = 'ROLE_USER'
 ON CONFLICT DO NOTHING;
 
--- Create regular user
-INSERT INTO users (user_id, email, password, password_updated_at, is_verified, is_active, created_at, updated_at)
-VALUES
-    (gen_random_uuid(), 'test@example.com', '$2a$12$WuOOclBlqkaBpFZg5gp/pejTElxK.W42iZxXY7eXGQqY4sA296nne', CURRENT_TIMESTAMP, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-ON CONFLICT (email) DO NOTHING;
-
--- Link to user role
+-- Link test_user to user role
 INSERT INTO user_roles (user_id, role_id)
 SELECT
     u.user_id,
