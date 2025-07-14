@@ -48,9 +48,20 @@ public class SpringSecurityConfig {
                          Role "ADMIN" is automatically matched to ROLE_ADMIN through the DB.
                          Alternative syntax could be .hasAuthority("ROLE_ADMIN")
                          */
-                        .requestMatchers("/css/**", "/js/**", "/assets/**", "/fonts/**", "/favicon.ico").permitAll()
+                        .requestMatchers(
+                                "/css/**",
+                                "/js/**",
+                                "/assets/**",
+                                "/fonts/**",
+                                "/favicon.ico").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/index.html", "/login.html", "/recipe.html").permitAll()
+                        .requestMatchers(
+                                "/",
+                                "/index.html",
+                                "/login.html",
+                                "/recipe.html",
+                                "/register.html",
+                                "/postrecipe.html").permitAll()
                         .requestMatchers(ApiRoutes.V1.ADMIN + "/**").hasRole("ADMIN")
                         .requestMatchers(ApiRoutes.V1.AUTH + "/**").permitAll()
                         .requestMatchers(
