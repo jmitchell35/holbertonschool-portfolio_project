@@ -3,6 +3,7 @@ package com.holberton_portfolio_project.BonAppEatIt.configuration;
 import com.holberton_portfolio_project.BonAppEatIt.constants.ApiRoutes;
 
 import com.holberton_portfolio_project.BonAppEatIt.security.CustomAuthenticationEntryPoint;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -47,6 +48,9 @@ public class SpringSecurityConfig {
                          Role "ADMIN" is automatically matched to ROLE_ADMIN through the DB.
                          Alternative syntax could be .hasAuthority("ROLE_ADMIN")
                          */
+                        .requestMatchers("/css/**", "/js/**", "/assets/**", "/fonts/**", "/favicon.ico").permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/", "/index.html", "/login.html", "/recipe.html").permitAll()
                         .requestMatchers(ApiRoutes.V1.ADMIN + "/**").hasRole("ADMIN")
                         .requestMatchers(ApiRoutes.V1.AUTH + "/**").permitAll()
                         .requestMatchers(
