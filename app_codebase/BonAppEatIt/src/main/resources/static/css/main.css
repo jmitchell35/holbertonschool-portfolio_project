@@ -1,0 +1,97 @@
+html, body {
+    height: 100%; /* Ensure full height */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Use viewport height instead of 100% */
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    position: relative;
+}
+
+.hero-section {
+    background-image: url('../assets/images/background_cropped.png');
+
+    /* Sizing */
+    background-size: cover; /* Scale to fill entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Don't tile the image */
+
+    background-color: rgba(0, 0, 0, 0.4);
+
+    min-height: 200px; /* Minimum height for content */
+    padding: 2rem 0; /* Space for navigation */
+
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 0.5rem;
+}
+
+.main-nav {
+    display: flex;
+    gap: 1rem; /* Space between nav links */
+}
+
+.main-bar a {
+    color: #001A78;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.5rem 0.5rem;
+
+    transition: background-color 0.3s ease;
+
+    border-bottom: 2px solid #001A78;
+}
+
+.main-bar a:hover {
+    border-bottom: 2px solid #EBA300;
+}
+
+.auth-bar {
+    display: flex;
+    gap: 1rem;
+}
+
+.main-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #001A78;
+    color: #FFFFFF;
+    position: relative;
+    min-height: 50px;
+    margin-top: auto; /* Push to the bottom */
+    flex-shrink: 0; /* Prevent footer from shrinking */
+    width: 100%; /* Ensure footer takes full width */
+}
+
+main {
+    flex: 1 0 auto; /* Takes up all available space, doesn't shrink */
+    padding: 2rem;
+    width: 100%; /* Ensure main takes full width */
+}
