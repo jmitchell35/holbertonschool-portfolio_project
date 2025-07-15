@@ -33,8 +33,11 @@ public class IngredientController {
     }
 
     @GetMapping("/search")
-    public ResponseSuccessDTO searchIngredients(HttpServletRequest request, @RequestParam String query) {
-        List<IngredientDTO> ingredients = ingredientService.searchIngredients(query);
+    public ResponseSuccessDTO searchIngredients(HttpServletRequest request, @RequestParam(defaultValue = "") String query) {
+
+        List<IngredientDTO> ingredients = query.isEmpty() ?
+                ingredientService.getAllIngredients() :
+                ingredientService.searchIngredients(query);
 
         return responseSuccessService.createSuccessResponse(request, ingredients);
     }
