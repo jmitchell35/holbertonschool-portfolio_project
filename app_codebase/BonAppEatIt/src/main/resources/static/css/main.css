@@ -13,12 +13,16 @@ body {
     color: #000978;
 }
 
+button {
+    cursor: pointer;
+}
+
 .main-header {
     position: relative;
 }
 
 .hero-section {
-    background-image: url('../assets/images/background_cropped.png');
+    background-image: url('../assets/images/toWEBP/background_cropped_rotated.webp');
 
     /* Sizing */
     background-size: cover; /* Scale to fill entire container */
@@ -63,6 +67,7 @@ body {
     font-size: 1.2rem;
     font-weight: 500;
     padding: 0.5rem 0.5rem;
+    margin: 0 0.5rem;
 
     transition: background-color 0.3s ease;
 
@@ -70,6 +75,26 @@ body {
 }
 
 .main-bar a:hover {
+    border-bottom: 2px solid #EBA300;
+}
+
+.main-bar button {
+    color: #001A78;
+    background: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.5rem 0.5rem;
+    margin: 0 0.5rem;
+
+    transition: background-color 0.3s ease;
+
+    border-bottom: 2px solid #001A78;
+}
+
+.main-bar button:hover {
     border-bottom: 2px solid #EBA300;
 }
 
@@ -145,4 +170,9 @@ form input {
 
 .registration-form label, p {
     margin: 0;
+}
+
+.logout-btn {
+    background: none;
+
 }

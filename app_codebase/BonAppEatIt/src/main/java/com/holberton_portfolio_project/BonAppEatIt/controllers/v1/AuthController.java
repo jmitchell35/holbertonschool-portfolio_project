@@ -14,11 +14,14 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -97,5 +100,23 @@ public class AuthController {
         cookie.setSecure(true);
         response.addCookie(cookie);
         return responseSuccessService.createSuccessResponse(request, "Logged out successfully");
+    }
+
+    @GetMapping("/me")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseSuccessDTO getCurrentUser(HttpServletRequest request, Authentication auth) {
+        if (auth != null && auth.isAuthenticated()) {
+            return responseSuccessService.createSuccessResponse(
+                    request,
+                    "User authenticated",
+                    Map.of("username", auth.getName(), "authenticated", true)
+            );
+        }
+
+        return responseSuccessService.createSuccessResponse(
+                request,
+                "Not authenticated",
+                Map.of("authenticated", false)
+        );
     }
 }
