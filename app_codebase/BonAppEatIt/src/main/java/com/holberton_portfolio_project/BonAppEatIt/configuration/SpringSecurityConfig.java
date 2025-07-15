@@ -51,8 +51,7 @@ public class SpringSecurityConfig {
                                 "/css/**",
                                 "/js/**",
                                 "/assets/**",
-                                "/fonts/**",
-                                "/favicon.ico").permitAll()
+                                "/fonts/**").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(
                                 "/",
@@ -60,9 +59,14 @@ public class SpringSecurityConfig {
                                 "/login.html",
                                 "/recipe.html",
                                 "/register.html",
-                                "/postrecipe.html").permitAll()
+                                "/postrecipe.html",
+                                "/favicon.ico").permitAll()
                         .requestMatchers(ApiRoutes.V1.ADMIN + "/**").hasRole("ADMIN")
-                        .requestMatchers(ApiRoutes.V1.AUTH + "/**").permitAll()
+                        // Don't blindly permit requests to endpoints (ensure future-safety)
+                        .requestMatchers(ApiRoutes.V1.AUTH + "/register").permitAll()
+                        .requestMatchers(ApiRoutes.V1.AUTH + "/login").permitAll()
+                        .requestMatchers(ApiRoutes.V1.AUTH + "/logout").permitAll()
+                        .requestMatchers(ApiRoutes.V1.AUTH + "/me").permitAll()
                         .requestMatchers(
                                 HttpMethod.GET,
                                 ApiRoutes.V1.RECIPES,
