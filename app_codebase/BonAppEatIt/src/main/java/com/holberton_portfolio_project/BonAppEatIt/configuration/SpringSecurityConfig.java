@@ -32,9 +32,8 @@ public class SpringSecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)
-
-                )  // sessions when needed
-                .httpBasic(Customizer.withDefaults())  // HTTP basic auth
+                )
+                .httpBasic(Customizer.withDefaults())  // HTTP basic auth header (base 64 encoded), to any route
                 .exceptionHandling(ex ->
                         ex.authenticationEntryPoint(authenticationEntryPoint))
                 /*
