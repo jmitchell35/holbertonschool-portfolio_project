@@ -87,28 +87,23 @@ class AppHeader extends HTMLElement {
     // Server-side check of valid session
     async validateAuth() {
         this.loading = true;
-        this.render(); // Re-render to show loading state
+        this.render();
 
         try {
-            // Dedicated back-end auth check route
-            const response = await fetch('/api/v1/auth/me', {
-                credentials: 'include'
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                this.isAuthenticated = data.data.authenticated;
+            this.isAuthenticated = await AuthService.isAuthenticated();
+            if (this.isAuthenticated) {
+                const data = await AuthService.getCurrentUser();
                 this.userInfo = data.data;
             } else {
-                this.isAuthenticated = false;
                 this.userInfo = null;
             }
-        } catch {
+        } catch (error) {
+            console.error('Auth check failed:', error);
             this.isAuthenticated = false;
             this.userInfo = null;
         } finally {
             this.loading = false;
-            this.render(); // Re-render with final state
+            this.render();
         }
     }
 
@@ -149,6 +144,26 @@ class AppFooter extends HTMLElement {
     }
 }
 
+class AuthService {
+    static async getCurrentUser() {
+        const response = await fetch('/api/v1/auth/me', { credentials: 'include' });
+        if (response.ok) {
+            return await response.json();
+        }
+        throw new Error('Authentication failed');
+    }
+
+    static async isAuthenticated() {
+        try {
+            const data = await this.getCurrentUser();
+            return data.data.authenticated;
+        } catch {
+            return false;
+        }
+    }
+}
+
+window.AuthService = AuthService;
 
 customElements.define('app-favicon', AppFavicon);
 customElements.define('app-header', AppHeader);
