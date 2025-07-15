@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -48,5 +49,10 @@ public class UserService {
 
     boolean usernameAlreadyExists(String username) {
         return userRepository.existsByUsername(username);
+    }
+
+    Optional<String> getUsername(String email) {
+        return userRepository.findByEmail(email)
+                .map(User::getUsername);
     }
 }

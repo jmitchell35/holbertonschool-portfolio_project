@@ -8,6 +8,8 @@ import com.holberton_portfolio_project.BonAppEatIt.exceptions.UserAlreadyExistsE
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthService {
     private final UserService userService;
@@ -50,5 +52,9 @@ public class AuthService {
 
         // create user entity from DTO
         return userService.createUser(dto.getEmail(), dto.getUsername(), hashedPassword);
+    }
+
+    public Optional<String> getUsername(String email) {
+        return userService.getUsername(email);
     }
 }

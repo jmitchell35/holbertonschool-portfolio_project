@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -106,11 +107,20 @@ public class AuthController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseSuccessDTO getCurrentUser(HttpServletRequest request, Authentication auth) {
         if (auth != null && auth.isAuthenticated()) {
-            return responseSuccessService.createSuccessResponse(
-                    request,
-                    "User authenticated",
-                    Map.of("username", auth.getName(), "authenticated", true)
-            );
+            String email = auth.getName();
+            Optional<String> username = authService.getUsername(email);
+
+            if (username.isPresent()) {
+                return responseSuccessService.createSuccessResponse(
+                        request,
+                        "User authenticated",
+                        Map.of(
+                                "email", email,
+                                "username", username,  // Add this!
+                                "authenticated", true
+                        )
+                );
+            }
         }
 
         return responseSuccessService.createSuccessResponse(
