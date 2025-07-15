@@ -10,6 +10,7 @@ body {
     min-height: 100vh; /* Use viewport height instead of 100% */
     margin: 0;
     padding: 0;
+    color: #000978;
 }
 
 .main-header {
@@ -94,4 +95,54 @@ main {
     flex: 1 0 auto; /* Takes up all available space, doesn't shrink */
     padding: 2rem;
     width: 100%; /* Ensure main takes full width */
+}
+
+form {
+    width: 100%;
+    max-width: 33%;  /* Reasonable max width for forms */
+    margin: 0 auto;    /* Center the form */
+}
+
+form .fields-container {
+    display: flex;
+    flex-direction: column;
+}
+
+form .form-btn {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background: #001A78;
+    color: white;
+    height: 30px;
+    width: 140px;
+    border: none;
+}
+
+form .form-btn-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form input {
+    width: 100%;  /* Force inputs to fill container width */
+    box-sizing: border-box;
+    margin: 0;    /* Reset any default margins */
+    padding: 8px; /* Add some padding for usability */
+
+    border-radius: 5px;
+    border: 1px solid #001A78;
+    outline: none;
+    box-shadow: none;
+}
+
+.registration-form input {
+    margin-bottom: 20px;
+}
+
+.registration-form label, p {
+    margin: 0;
 }
