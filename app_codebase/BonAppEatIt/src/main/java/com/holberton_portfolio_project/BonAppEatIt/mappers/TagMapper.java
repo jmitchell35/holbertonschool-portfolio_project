@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class TagMapper {
     public TagDTO toTagDTO(Tag tag) {
         return TagDTO.builder()
+                .id(tag.getId())
                 .name(tag.getName())
                 .backgroundColorHex(tag.getBackgroundColorHex())
                 .fontColorHex(tag.getFontColorHex())
