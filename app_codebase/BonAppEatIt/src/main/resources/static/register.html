@@ -11,7 +11,38 @@
 <!-- Shared header will be inserted by JavaScript -->
 <app-header></app-header>
 <main>
+    <form class="registration-form" id="registration-form">
+        <div class="fields-container">
+            <h1>Créer un compte</h1>
+            <p>Merci de remplir les champs ci-dessous pour créer votre compte utilisateur.</p>
+            <p>En créant un compte, vous donnez votre accord à nos <a href="#">conditions d'utilisation</a>.<br><br></p>
 
+
+            <label for="email"><b>Saisissez une adresse email valide.</b></label>
+            <input type="email" name="email" id="email" autocomplete="email" required>
+
+            <label for="email-confirmation"><b>Confirmez votre adresse email.</b></label>
+            <input type="email" name="email-confirmation" id="email-confirmation" autocomplete="email" required>
+
+            <label for="nom-utilisateur"><b>Merci de saisir un nom d'utilisateur</b>
+            <p>Votre nom d'utilisateur sera attaché aux recettes que vous publierez.</p></label>
+            <input type="text" name="nom-utilisateur" id="nom-utilisateur" autocomplete="username" minlength="1" required>
+
+            <label for="mot-de-passe"><b>Saisissez votre mot de passe.</b>
+                <p class="sublabel">Votre mot de passe doit contenir au moins 12 caractères, un chiffre, un caractère majuscule, un caractère minuscule, et un caractère spécial.</p></label>
+            <input type="password" name="mot-de-passe" id="mot-de-passe" autocomplete="new-password" minlength="12" required>
+
+            <label for="confirmation-mot-de-passe"><b>Confirmez votre mot de passe.</b></label>
+            <input type="password" name="confirmation-mot-de-passe" id="confirmation-mot-de-passe" autocomplete="new-password" minlength="12" required>
+
+            <div class="form-btn-container">
+                <button type="submit" class="form-btn" id = "register-btn">Créer mon compte</button>
+                <div class="container-signin">
+                    <p>Déjà enregistré ? <a href="/login.html">Connectez-vous</a>.</p>
+                </div>
+            </div>
+        </div>
+    </form>
 </main>
 <!-- Shared footer will be inserted by JavaScript -->
 <app-footer></app-footer>
