@@ -15,18 +15,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadUserInfo() {
     try {
-        const response = await fetch('/api/v1/auth/me', {
-            credentials: 'include'
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            if (data.data.authenticated && data.data.username) {
-                document.getElementById('publisher').value = data.data.username;
-            } else {
-                alert('Vous devez être connecté pour publier une recette.');
-                window.location.href = '/login.html';
-            }
+        if (await AuthService.isAuthenticated()) {
+            const data = await AuthService.getCurrentUser();
+            document.getElementById('publisher').value = data.data.username;
         } else {
             alert('Vous devez être connecté pour publier une recette.');
             window.location.href = '/login.html';
@@ -256,6 +247,12 @@ function setupFormSubmission() {
     const form = document.getElementById('post-recipe-form');
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        if (!(await AuthService.isAuthenticated())) {
+            alert('Votre session a expiré. Vous allez être redirigé vers la page de connexion.');
+            window.location.href = '/login.html';
+            return;
+        }
 
         // Validate that all ingredients have IDs selected
         const ingredientIds = document.querySelectorAll('input[name*="ingredientId"]');
