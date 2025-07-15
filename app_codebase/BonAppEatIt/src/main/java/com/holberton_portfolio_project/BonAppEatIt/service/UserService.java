@@ -20,12 +20,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public UserCreatedDTO createUser(String email, HashedPassword password) {
+    public UserCreatedDTO createUser(String email, String username,HashedPassword password) {
         Role defaultRole = roleRepository.findByRole("ROLE_USER")
                 .orElseThrow(() -> new RuntimeException("Default role 'ROLE_USER' not found in the database"));
 
         User newUser = User.builder()
                 .email(email)
+                .username(username)
                 .password(password.getValue())
                 .passwordUpdatedAt(LocalDateTime.now())
                 .roles(new HashSet<>(Set.of(defaultRole)))
