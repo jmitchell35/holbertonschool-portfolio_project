@@ -4,13 +4,17 @@ let instructionCounter = 1;
 // Performance : load once on page load, then filter from the caches' array
 let ingredientsCache = [];
 let unitsCache = [];
+let tagsCache = [];
+let selectedTagIds = new Set();
 
 // Load initial data
 document.addEventListener('DOMContentLoaded', async () => {
     await loadIngredients();
     await loadUnits();
     await loadUserInfo();
+    await loadTags();
     setupFormSubmission();
+    renderTags();
 });
 
 async function loadUserInfo() {
@@ -54,6 +58,81 @@ async function loadUnits() {
         }
     } catch (error) {
         console.error('Failed to load units:', error);
+    }
+}
+
+async function loadTags() {
+    try {
+        const response = await fetch('/api/v1/tags', {
+            credentials: 'include'
+        });
+        if (response.ok) {
+            const data = await response.json();
+            tagsCache = data.data;
+        }
+    } catch (error) {
+        console.error('Failed to load ingredients:', error);
+    }
+}
+
+function renderTags() {
+    const container = document.getElementById('tags-container');
+
+    if (tagsCache.length === 0) {
+        container.innerHTML = '<p style="color: #999;">Aucun tag disponible</p>';
+        return;
+    }
+
+    container.innerHTML = tagsCache.map(tag => `
+        <div class="tag-item" 
+             data-tag-id="${tag.id}"
+             data-tag-name="${tag.name}"
+             data-bg-color="${tag.backgroundColorHex}"
+             data-font-color="${tag.fontColorHex}"
+             style="background-color: ${tag.backgroundColorHex}; color: ${tag.fontColorHex};">
+            ${tag.name}
+        </div>
+    `).join('');
+}
+
+document.getElementById('tags-container').addEventListener('click', function(event) {
+    const tagElement = event.target.closest('.tag-item');
+    if (tagElement) {
+        const tagId = tagElement.dataset.tagId;
+        const tagName = tagElement.dataset.tagName;
+        const bgColor = tagElement.dataset.bgColor;
+        const fontColor = tagElement.dataset.fontColor;
+
+        console.log('Clicked tag:', tagName, 'ID:', tagId);
+        toggleTag(tagId, tagName, bgColor, fontColor);
+    }
+});
+
+function toggleTag(tagId) {
+    console.log('Before toggle:', Array.from(selectedTagIds));
+    console.log('Toggling tag:', tagId);
+    if (selectedTagIds.has(tagId)) {
+        // Toggle off
+        selectedTagIds.delete(tagId);
+        updateTagDisplay(tagId, false);
+        console.log('Removed tag');
+    } else {
+        // Toggle on
+        selectedTagIds.add(tagId);
+        updateTagDisplay(tagId, true);
+        console.log('Added tag');
+    }
+    console.log('After toggle:', Array.from(selectedTagIds));
+}
+
+function updateTagDisplay(tagId, isSelected) {
+    const tagElement = document.querySelector(`[data-tag-id="${tagId}"]`);
+    if (tagElement) {
+        if (isSelected) {
+            tagElement.classList.add('selected');
+        } else {
+            tagElement.classList.remove('selected');
+        }
     }
 }
 
@@ -347,7 +426,7 @@ function convertFormDataToJSON(formData) {
         publisher: formData.get('publisher'),
         recipeIngredients: [],
         instructions: [],
-        tagIds: [],
+        tagIds: Array.from(selectedTagIds),
         collectionIds: []
     };
 

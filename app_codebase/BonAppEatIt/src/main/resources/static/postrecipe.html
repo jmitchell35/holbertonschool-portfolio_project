@@ -6,6 +6,7 @@
     <title>Publier une recette - BonAppEatIt</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/postrecipe.css">
+    <link rel="stylesheet" href="/css/tags.css">
     <app-favicon></app-favicon>
 </head>
 <body>
@@ -92,6 +93,15 @@
                     </div>
                 </div>
                 <button type="button" class="add-button" onclick="addInstructionLine()">+ Ajouter une étape</button>
+            </div>
+
+            <!-- Tags Section -->
+            <div class="tags-section">
+                <h2>Tags</h2>
+                <p>Cliquez sur les tags qui correspondent à votre recette :</p>
+                <div class="tags-container" id="tags-container">
+                    <!-- Tags will be populated by JavaScript -->
+                </div>
             </div>
 
             <!-- Submit Button -->
