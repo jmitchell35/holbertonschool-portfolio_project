@@ -1,8 +1,8 @@
 package com.holberton_portfolio_project.BonAppEatIt.controllers.v1;
 
 import com.holberton_portfolio_project.BonAppEatIt.constants.ApiRoutes;
+import com.holberton_portfolio_project.BonAppEatIt.dto.IngredientDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseSuccessDTO;
-import com.holberton_portfolio_project.BonAppEatIt.models.Ingredient;
 import com.holberton_portfolio_project.BonAppEatIt.service.IngredientService;
 import com.holberton_portfolio_project.BonAppEatIt.service.ResponseSuccessService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,14 +27,14 @@ public class IngredientController {
 
     @GetMapping()
     public ResponseSuccessDTO getAllIngredients(HttpServletRequest request) {
-        List<Ingredient> ingredients = ingredientService.getAllIngredients();
+        List<IngredientDTO> ingredients = ingredientService.getAllIngredients();
 
         return responseSuccessService.createSuccessResponse(request, ingredients);
     }
 
     @GetMapping("/search")
     public ResponseSuccessDTO searchIngredients(HttpServletRequest request, @RequestParam String query) {
-        List<Ingredient> ingredients = ingredientService.searchIngredients(query);
+        List<IngredientDTO> ingredients = ingredientService.searchIngredients(query);
 
         return responseSuccessService.createSuccessResponse(request, ingredients);
     }
