@@ -6,7 +6,9 @@ import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreatedDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.UserCreationDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.AuthService;
 import com.holberton_portfolio_project.BonAppEatIt.service.ResponseSuccessService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -80,12 +82,20 @@ public class AuthController {
 
     @PostMapping("/logout")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseSuccessDTO logout(HttpServletRequest request) {
+    public ResponseSuccessDTO logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false); // don't create new session if none exist
 
         if (session != null) {
             session.invalidate();
         }
+
+        // Delete client cookie
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        response.addCookie(cookie);
         return responseSuccessService.createSuccessResponse(request, "Logged out successfully");
     }
 }
