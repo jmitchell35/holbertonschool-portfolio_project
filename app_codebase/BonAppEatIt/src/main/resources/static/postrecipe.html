@@ -5,13 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publier une recette - BonAppEatIt</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/postrecipe.css">
     <app-favicon></app-favicon>
 </head>
 <body>
 <!-- Shared header will be inserted by JavaScript -->
 <app-header></app-header>
 <main>
+    <form class="recipe-form" id="post-recipe-form">
+        <div class="fields-container">
+            <h1>Votre recette</h1>
 
+            <!-- Basic Recipe Info -->
+            <div class="basic-info">
+                <div class="form-group">
+                    <label for="recipe-name">Nom de la recette *</label>
+                    <input type="text" name="name" id="recipe-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="prep-time">Temps de préparation (minutes) *</label>
+                    <input type="number" name="prepTime" id="prep-time" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="servings">Nombre de portions *</label>
+                    <input type="number" name="servings" id="servings" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="publisher">Nom du créateur *</label>
+                    <input type="text" name="publisher" id="publisher" readonly>
+                </div>
+            </div>
+
+            <!-- Ingredients Section -->
+            <div class="ingredients-section">
+                <h2>Ingrédients</h2>
+                <div class="ingredients-fields" id="ingredients-fields">
+                    <!-- Initial ingredient line -->
+                    <div class="ingredient-line" id="ingredient-line-0">
+                        <button type="button" class="line-delete-button" onclick="removeIngredientLine(0)">×</button>
+
+                        <!-- Hidden fields for form submission - mapping to creationDTO -->
+                        <input type="hidden" name="recipeIngredients[0].ingredientId" id="ingredientId-0">
+                        <input type="hidden" name="recipeIngredients[0].unitId" id="unitId-0">
+
+                        <div class="ingredient-block">
+                            <label for="ingredient-search-0">Ingrédient</label>
+                            <input type="search" id="ingredient-search-0" placeholder="Rechercher un ingrédient..."
+                                   oninput="searchIngredients(0, this.value)" autocomplete="off">
+                            <div class="suggestions" id="ingredient-suggestions-0"></div>
+                        </div>
+
+                        <div class="quantity-block">
+                            <label for="quantity-0">Quantité</label>
+                            <input type="number" name="recipeIngredients[0].quantity" id="quantity-0" min="1" required>
+                        </div>
+
+                        <div class="unit-block">
+                            <label for="unit-search-0">Unité</label>
+                            <input type="search" id="unit-search-0" placeholder="Rechercher une unité..."
+                                   oninput="searchUnits(0, this.value)" autocomplete="off">
+                            <div class="suggestions" id="unit-suggestions-0"></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="add-button" onclick="addIngredientLine()">+ Ajouter un ingrédient</button>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="instructions-section">
+                <h2>Instructions</h2>
+                <div class="instructions-fields" id="instructions-fields">
+                    <!-- Initial instruction line -->
+                    <div class="instruction-line" id="instruction-line-0">
+                        <button type="button" class="line-delete-button" onclick="removeInstructionLine(0)">×</button>
+
+                        <input type="hidden" name="instructions[0].stepNumber" value="1">
+
+                        <div class="instruction-block">
+                            <label for="instruction-0">Étape 1</label>
+                            <textarea name="instructions[0].text" id="instruction-0"
+                                      placeholder="Décrivez cette étape..." required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="add-button" onclick="addInstructionLine()">+ Ajouter une étape</button>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="submit-button">Publier la recette</button>
+            </div>
+        </div>
+    </form>
 </main>
 <!-- Shared footer will be inserted by JavaScript -->
 <app-footer></app-footer>
