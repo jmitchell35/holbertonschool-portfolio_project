@@ -2,7 +2,7 @@ package com.holberton_portfolio_project.BonAppEatIt.controllers.v1;
 
 import com.holberton_portfolio_project.BonAppEatIt.constants.ApiRoutes;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseSuccessDTO;
-import com.holberton_portfolio_project.BonAppEatIt.models.Unit;
+import com.holberton_portfolio_project.BonAppEatIt.dto.UnitDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.ResponseSuccessService;
 import com.holberton_portfolio_project.BonAppEatIt.service.UnitService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +26,7 @@ public class UnitController {
     @GetMapping()
     public ResponseSuccessDTO getAllUnits(HttpServletRequest request) {
 
-        List<Unit> tags = unitService.getAllUnits();
+        List<UnitDTO> tags = unitService.getAllUnits();
 
         return responseSuccessService.createSuccessResponse(request, tags);
     }

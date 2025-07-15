@@ -2,7 +2,7 @@ package com.holberton_portfolio_project.BonAppEatIt.controllers.v1;
 
 import com.holberton_portfolio_project.BonAppEatIt.constants.ApiRoutes;
 import com.holberton_portfolio_project.BonAppEatIt.dto.ResponseSuccessDTO;
-import com.holberton_portfolio_project.BonAppEatIt.models.Tag;
+import com.holberton_portfolio_project.BonAppEatIt.dto.TagDTO;
 import com.holberton_portfolio_project.BonAppEatIt.service.ResponseSuccessService;
 import com.holberton_portfolio_project.BonAppEatIt.service.TagService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -26,7 +26,7 @@ public class TagController {
     @GetMapping()
     public ResponseSuccessDTO getAllTags(HttpServletRequest request) {
 
-        List<Tag> tags = tagService.getAllTags();
+        Set<TagDTO> tags = tagService.getAllTags();
 
         return responseSuccessService.createSuccessResponse(request, tags);
     }
