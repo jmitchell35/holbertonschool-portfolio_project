@@ -31,42 +31,8 @@ function buildRecipeUrl(baseUrl, filters = {}, pagination = {}) {
 }
 
 async function fetchRecipes(filters = {}, pagination = {}) {
-    try {
-        const params = new URLSearchParams();
-
-        if (pagination.page !== undefined) params.append('page', pagination.page);
-        if (pagination.size !== undefined) params.append('size', pagination.size);
-
-        Object.entries(filters).forEach(([key, value]) => {
-            if (value !== null && value !== undefined) {
-                if (Array.isArray(value)) {
-                    // For arrays, add each item as separate parameter
-                    value.forEach(item => params.append(key, item));
-                } else {
-                    params.append(key, value);
-                }
-            }
-        });
-
-        console.log('Final URL params:', params.toString());
-        console.log('Full URL:', `/api/v1/recipes?${params}`);
-
-        const response = await fetch(`/api/v1/recipes?${params}`, {
-            credentials: 'include'
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            return { success: true, data };
-        } else {
-            return { success: false, error: `HTTP ${response.status}` };
-        }
-    } catch (error) {
-        return { success: false, error: error.message };
-    }
+    return await RecipeService.getRecipes(filters, pagination);
 }
-
-window.fetchRecipes = fetchRecipes;  // Make it globally available
 
 document.addEventListener('DOMContentLoaded', async () => {
     const recipeList = document.querySelector('recipe-list');

@@ -17,7 +17,7 @@ class RecipeList extends HTMLElement {
         this.renderLoading();
 
         try {
-            const result = await fetchRecipes(filters, pagination);
+            const result = await RecipeService.getRecipes(filters, pagination);
 
             if (result.success) {
                 // result.data is your Page<RecipeOutputDTO> from Spring

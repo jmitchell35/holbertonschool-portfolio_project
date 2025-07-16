@@ -352,22 +352,13 @@ function setupFormSubmission() {
         const jsonData = convertFormDataToJSON(formData);
 
         try {
-            const response = await fetch('/api/v1/recipes', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                body: JSON.stringify(jsonData)
-            });
+            const result = await RecipeService.createRecipe(jsonData);
 
-            const result = await response.json();
-
-            if (response.ok) {
+            if (result.success) {
                 alert('Recette créée avec succès !');
                 window.location.href = '/';
             } else {
-                alert('Erreur: ' + (result.errors?.[0]?.message || 'Erreur inconnue'));
+                alert('Erreur: ' + result.error);
             }
         } catch (error) {
             console.error('Error submitting recipe:', error);
