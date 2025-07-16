@@ -23,19 +23,18 @@
 
             <div id="filter-panel" class="filter-panel collapsed">
                 <form id="filter-form" class="filter-form">
+                    <!-- Basic filters -->
                     <div class="filter-row">
-                        <div class="filter-group" id="maxPrepTimeContainer">
-                            <label for="maxPrepTime">Temps (minutes) :</label>
+                        <div class="filter-group">
+                            <label for="maxPrepTime">Temps max (minutes) :</label>
                             <input type="number" id="maxPrepTime" name="maxPrepTime" min="1">
                         </div>
-
-                        <div class="filter-group" id="maxIngredientsContainer">
+                        <div class="filter-group">
                             <label for="maxIngredients">Nb. max. d'ingrédients :</label>
                             <input type="number" id="maxIngredients" name="maxIngredients" min="2">
                         </div>
-
-                        <div class="filter-group" id="monthContainer">
-                            <label for="month">Saisonnalité (mois):</label>
+                        <div class="filter-group">
+                            <label for="month">Saisonnalité :</label>
                             <select id="month" name="month">
                                 <option value="">Ne pas filtrer</option>
                                 <option value="1">Janvier</option>
@@ -45,38 +44,45 @@
                                 <option value="5">Mai</option>
                                 <option value="6">Juin</option>
                                 <option value="7">Juillet</option>
-                                <option value="2">Août</option>
-                                <option value="2">Septembre</option>
-                                <option value="2">Octobre</option>
-                                <option value="2">Novembre</option>
-                                <option value="2">Décembre</option>
+                                <option value="8">Août</option>
+                                <option value="9">Septembre</option>
+                                <option value="10">Octobre</option>
+                                <option value="11">Novembre</option>
+                                <option value="12">Décembre</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="filter-row">
                         <div class="filter-group">
-                            <label>
-                                <i class="fa-solid fa-tags"></i>
-                                Tags:
-                            </label>
-                            <div class="tags-container" id="filter-tags-container">
-                                <!-- Tags will be populated by JavaScript -->
+                            <label>Ingrédients requis :</label>
+                            <div class="ingredient-filter">
+                                <div class="input-wrapper">
+                                    <input type="text" id="include-search" placeholder="Chercher un ingrédient...">
+                                    <div class="suggestions" id="include-suggestions"></div>
+                                </div>
+                                <div class="selected-ingredients" id="include-selected"></div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Ingrédients à éviter :</label>
+                            <div class="ingredient-filter">
+                                <div class="input-wrapper">
+                                    <input type="text" id="exclude-search" placeholder="Chercher un ingrédient...">
+                                    <div class="suggestions" id="exclude-suggestions"></div>
+                                </div>
+                                <div class="selected-ingredients" id="exclude-selected"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- More complex filters -->
                     <div class="filter-row">
-                        <div class="filter-group">
-                            <label>Inclure les ingredients:</label>
-                            <input type="text" id="includeIngredients" name="includeIngredients"
-                                   placeholder="tomate, oignon..."
-                                   title="Comma-separated ingredient names">
-                        </div>
-
-                        <div class="filter-group">
-                            <label>Exclure les ingredients:</label>
-                            <input type="text" id="excludeIngredients" name="excludeIngredients"
-                                   placeholder="champignons, poivron..."
-                                   title="Comma-separated ingredient names">
+                        <div class="filter-group full-width">
+                            <label><i class="fa-solid fa-tags"></i> Tags:</label>
+                            <div class="tags-container" id="filter-tags-container">
+                                <!-- Tags will be populated by JavaScript -->
+                            </div>
                         </div>
                     </div>
                     <div class="filter-actions">

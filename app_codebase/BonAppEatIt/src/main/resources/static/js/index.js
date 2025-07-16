@@ -1,5 +1,7 @@
 let tagsCache = [];
 let selectedFilterTags = new Set();
+let ingredientsCache = [];
+let selectedIngredients = { include: [], exclude: [] };
 
 function buildRecipeUrl(baseUrl, filters = {}, pagination = {}) {
     const url = new URL(baseUrl);
@@ -38,10 +40,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const recipeList = document.querySelector('recipe-list');
     if (recipeList) {
         await loadTagsForFiltering();
+        await loadIngredientsForFiltering();
 
         void recipeList.loadRecipes();
         setupFilterToggle();
         setupFilters(recipeList);
+        setupIngredientAutocomplete();
     }
 });
 
@@ -87,9 +91,9 @@ function setupFilters(recipeList) {
                 maxPrepTime: formData.get('maxPrepTime') || null,
                 maxIngredients: formData.get('maxIngredients') || null,
                 month: formData.get('month') || null,
-                // Convert comma-separated strings to arrays
-                includeIngredients: parseCommaSeparated(formData.get('includeIngredients')),
-                excludeIngredients: parseCommaSeparated(formData.get('excludeIngredients')),
+
+                includeIngredients: selectedIngredients.include.length > 0 ? selectedIngredients.include : null,
+                excludeIngredients: selectedIngredients.exclude.length > 0 ? selectedIngredients.exclude : null,
 
                 tagIds: Array.from(selectedFilterTags).map(tagName => {
                     const tag = tagsCache.find(t => t.name === tagName);
@@ -114,19 +118,27 @@ function setupFilters(recipeList) {
     }
 }
 
-function parseCommaSeparated(value) {
-    if (!value || value.trim() === '') return null;
-    return value.split(',').map(item => item.trim()).filter(item => item.length > 0);
-}
-
 async function loadTagsForFiltering() {
     try {
-        const result = await TagService.getAll();
-        if (result.success) {
-            tagsCache = result.data;
+        const tagsResult = await TagService.getAll();
+        if (tagsResult.success) {
+            tagsCache = tagsResult.data;
             renderFilterTags();
         } else {
             console.error('Failed to load tags for filtering');
+        }
+    } catch (error) {
+        console.error('Error loading tags:', error);
+    }
+}
+
+async function loadIngredientsForFiltering() {
+    try {
+        const ingredientsResult = await IngredientService.getAll();
+        if (ingredientsResult.success) {
+            ingredientsCache = ingredientsResult.data;
+        } else {
+            console.error('Failed to load ingredients for filtering');
         }
     } catch (error) {
         console.error('Error loading tags:', error);
@@ -145,8 +157,7 @@ function renderFilterTags() {
 
     container.innerHTML = tagsCache.map(tag => `
         <div class="filter-tag-item" 
-             data-tag-name="${tag.name}"
-             style="background-color: ${tag.backgroundColorHex}; color: ${tag.fontColorHex};">
+             data-tag-name="${tag.name}">
             ${tag.name}
         </div>
     `).join('');
@@ -172,21 +183,138 @@ function toggleFilterTag(tagName, tagElement) {
         // Remove tag from selection
         selectedFilterTags.delete(tagName);
         tagElement.classList.remove('selected');
+        const removeBtn = tagElement.querySelector('.remove-btn');
+        if (removeBtn) removeBtn.remove();
     } else {
         // Add tag to selection
         selectedFilterTags.add(tagName);
         tagElement.classList.add('selected');
+        addRemoveButtonToTag(tagElement, tagName);
     }
 
     console.log('Selected filter tags:', Array.from(selectedFilterTags));
 }
 
+function addRemoveButtonToTag(tagElement, tagName) {
+    // Check if button already exists
+    if (tagElement.querySelector('.remove-btn')) return;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'remove-btn';
+    removeBtn.type = 'button';
+    removeBtn.innerHTML = '×';
+    removeBtn.onclick = function(e) {
+        e.stopPropagation(); // Prevent triggering the tag click
+        removeFilterTag(tagName, tagElement);
+    };
+
+    tagElement.appendChild(removeBtn);
+}
+
+function removeFilterTag(tagName, tagElement) {
+    selectedFilterTags.delete(tagName);
+    tagElement.classList.remove('selected');
+    const removeBtn = tagElement.querySelector('.remove-btn');
+    if (removeBtn) removeBtn.remove();
+}
+
 function clearSelectedFilterTags() {
     selectedFilterTags.clear();
+    selectedIngredients = { include: [], exclude: [] };
+    updateSelectedIngredientsDisplay();
 
     // Remove visual selection from all tag elements
     const tagElements = document.querySelectorAll('.filter-tag-item');
     tagElements.forEach(element => {
         element.classList.remove('selected');
+        const removeBtn = element.querySelector('.remove-btn');
+        if (removeBtn) removeBtn.remove();
     });
+}
+
+function setupIngredientAutocomplete() {
+    setupSingleAutocomplete('include');
+    setupSingleAutocomplete('exclude');
+}
+
+function setupSingleAutocomplete(type) {
+    const searchInput = document.getElementById(`${type}-search`);
+    const suggestionsDiv = document.getElementById(`${type}-suggestions`);
+
+    if (!searchInput || !suggestionsDiv) return;
+
+    searchInput.addEventListener('input', (event) => {
+        const query = event.target.value.trim();
+
+        if (query.length < 2) {
+            hideSuggestions(suggestionsDiv);
+            return;
+        }
+
+        const results = IngredientService.searchCache(ingredientsCache, query);
+        showSuggestions(suggestionsDiv, results, type);
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest(`#${type}-search`) && !event.target.closest(`#${type}-suggestions`)) {
+            hideSuggestions(suggestionsDiv);
+        }
+    });
+}
+
+function showSuggestions(suggestionsDiv, results, type) {
+    if (results.length === 0) {
+        hideSuggestions(suggestionsDiv);
+        return;
+    }
+
+    suggestionsDiv.innerHTML = results.map(ingredient => `
+        <div class="suggestion-item" onclick="selectIngredient('${ingredient.ingredientSingular}', '${type}')">
+            ${ingredient.ingredientSingular}
+        </div>
+    `).join('');
+
+    suggestionsDiv.style.display = 'block';
+}
+
+function hideSuggestions(suggestionsDiv) {
+    suggestionsDiv.style.display = 'none';
+}
+
+function selectIngredient(ingredientName, type) {
+    if (selectedIngredients[type].includes(ingredientName)) return;
+
+    const otherType = type === 'include' ? 'exclude' : 'include';
+    selectedIngredients[otherType] = selectedIngredients[otherType].filter(name => name !== ingredientName);
+    selectedIngredients[type].push(ingredientName);
+
+    updateSelectedIngredientsDisplay();
+
+    const searchInput = document.getElementById(`${type}-search`);
+    const suggestionsDiv = document.getElementById(`${type}-suggestions`);
+    searchInput.value = '';
+    hideSuggestions(suggestionsDiv);
+}
+
+function updateSelectedIngredientsDisplay() {
+    updateSingleDisplay('include');
+    updateSingleDisplay('exclude');
+}
+
+function updateSingleDisplay(type) {
+    const container = document.getElementById(`${type}-selected`);
+    if (!container) return;
+
+    const ingredients = selectedIngredients[type];
+    container.innerHTML = ingredients.map(ingredient => `
+        <div class="ingredient-tag ${type === 'exclude' ? 'exclude' : ''}">
+            <span>${ingredient}</span>
+            <button class="remove-btn" onclick="removeIngredient('${ingredient}', '${type}')" type="button">×</button>
+        </div>
+    `).join('');
+}
+
+function removeIngredient(ingredientName, type) {
+    selectedIngredients[type] = selectedIngredients[type].filter(name => name !== ingredientName);
+    updateSelectedIngredientsDisplay();
 }

@@ -23,6 +23,14 @@ class IngredientService {
         }
         return { success: false, error: `HTTP ${response.status}` };
     }
+
+    static searchCache(ingredientsArray, query) {
+        if (!query || query.length < 2) return [];
+
+        return ingredientsArray.filter(ingredient =>
+            ingredient.ingredientSingular.toLowerCase().includes(query.toLowerCase())
+        ).slice(0, 10);
+    }
 }
 
 window.IngredientService = IngredientService;  // globally available
