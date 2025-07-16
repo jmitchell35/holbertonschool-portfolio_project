@@ -35,12 +35,9 @@ async function loadUserInfo() {
 
 async function loadIngredients() {
     try {
-        const response = await fetch('/api/v1/ingredients', {
-            credentials: 'include'
-        });
-        if (response.ok) {
-            const data = await response.json();
-            ingredientsCache = data.data;
+        const result = await IngredientService.getAll();
+        if (result.success) {
+            ingredientsCache = result.data;
         }
     } catch (error) {
         console.error('Failed to load ingredients:', error);
@@ -49,12 +46,9 @@ async function loadIngredients() {
 
 async function loadUnits() {
     try {
-        const response = await fetch('/api/v1/units', {
-            credentials: 'include'
-        });
-        if (response.ok) {
-            const data = await response.json();
-            unitsCache = data.data;
+        const result = await UnitService.getAll();
+        if (result.success) {
+            unitsCache = result.data;
         }
     } catch (error) {
         console.error('Failed to load units:', error);
@@ -63,12 +57,10 @@ async function loadUnits() {
 
 async function loadTags() {
     try {
-        const response = await fetch('/api/v1/tags', {
-            credentials: 'include'
-        });
-        if (response.ok) {
-            const data = await response.json();
-            tagsCache = data.data;
+        const result = await TagService.getAll();
+
+        if (result.success) {
+            tagsCache = result.data;
         }
     } catch (error) {
         console.error('Failed to load ingredients:', error);

@@ -155,13 +155,9 @@ function parseCommaSeparated(value) {
 
 async function loadTagsForFiltering() {
     try {
-        const response = await fetch('/api/v1/tags', {
-            credentials: 'include'
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            tagsCache = data.data;
+        const result = await TagService.getAll();
+        if (result.success) {
+            tagsCache = result.data;
             renderFilterTags();
         } else {
             console.error('Failed to load tags for filtering');
