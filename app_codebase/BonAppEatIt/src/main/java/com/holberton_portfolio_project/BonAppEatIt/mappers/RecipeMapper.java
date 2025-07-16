@@ -27,6 +27,8 @@ public class RecipeMapper {
                 .prepTime(recipe.getPrepTime())
                 .servings(recipe.getServings())
                 .tags(tagsDTO)
+                .thumbnailUrl(recipe.getThumbnailUrl())
+                .bannerUrl(recipe.getBannerUrl())
                 .recipeIngredients(recipeIngredientsDTO)
                 .createdAt(recipe.getCreatedAt())
                 .build();

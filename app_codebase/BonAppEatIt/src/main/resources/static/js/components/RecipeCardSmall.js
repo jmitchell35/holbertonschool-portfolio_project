@@ -12,9 +12,15 @@ class RecipeCardSmall extends HTMLElement {
 
     render() {
         if (!this.recipe) return;
+        console.log('Recipe data:', this.recipes);
+
+        const thumbnailHtml = this.recipe.thumbnailUrl ?
+            `<img src="${this.recipe.thumbnailUrl}" alt="${this.recipe.name}" class="recipe-thumbnail" onerror="this.style.display='none'">`
+            : '';
 
         this.innerHTML = `
             <article class="recipe-card" data-recipe-id="${this.recipe.id}">
+             ${thumbnailHtml}
                 <div class="recipe-header">
                     <h3 class="recipe-title">${this.recipe.name}</h3>
                     <div class="recipe-meta">

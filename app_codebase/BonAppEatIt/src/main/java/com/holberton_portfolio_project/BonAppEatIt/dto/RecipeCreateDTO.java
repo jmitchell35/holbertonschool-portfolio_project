@@ -38,4 +38,10 @@ public class RecipeCreateDTO {
 
     @NotEmpty(message = "Please provide an ingredients list")
     private Set<RecipeIngredientInputDTO> recipeIngredients;
+
+    @NotBlank(message = "Please provide a thumbnail picture")
+    private String thumbnailUrl;
+
+    @NotBlank(message = "Please provide a banner picture")
+    private String bannerUrl;
 }

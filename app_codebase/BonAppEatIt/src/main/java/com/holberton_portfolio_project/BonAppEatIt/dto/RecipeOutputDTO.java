@@ -25,4 +25,6 @@ public class RecipeOutputDTO {
     private Set<RecipeIngredientOutputDTO> recipeIngredients = new HashSet<>();
 
     private LocalDateTime createdAt;
+    private String thumbnailUrl;
+    private String bannerUrl;
 }

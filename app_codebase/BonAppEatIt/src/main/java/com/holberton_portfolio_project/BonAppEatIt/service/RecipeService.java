@@ -94,6 +94,8 @@ public class RecipeService {
                 .prepTime(dto.getPrepTime())
                 .servings(dto.getServings())
                 .publisher(dto.getPublisher())
+                .thumbnailUrl(dto.getThumbnailUrl())
+                .bannerUrl(dto.getBannerUrl())
                 .build();
 
         Set<Instruction> instructions = buildInstructions(dto.getInstructions(), recipe);

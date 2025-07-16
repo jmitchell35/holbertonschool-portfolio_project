@@ -407,6 +407,8 @@ function convertFormDataToJSON(formData) {
         prepTime: parseInt(formData.get('prepTime')),
         servings: parseInt(formData.get('servings')),
         publisher: formData.get('publisher'),
+        thumbnailUrl: formData.get('thumbnailUrl') || null,
+        bannerUrl: formData.get('bannerUrl') || null,
         recipeIngredients: [],
         instructions: [],
         tagIds: Array.from(selectedTagIds),

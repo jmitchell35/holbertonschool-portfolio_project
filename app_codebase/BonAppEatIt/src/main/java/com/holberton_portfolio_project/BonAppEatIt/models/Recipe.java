@@ -72,4 +72,10 @@ public class Recipe extends BaseEntity {
     @Builder.Default
     @OneToMany(targetEntity = RecipeIngredient.class, mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<RecipeIngredient> recipeIngredients = new HashSet<>();
+
+    @Column(name = "thumbnail_url", length = 500)
+    private String thumbnailUrl;
+
+    @Column(name = "banner_url", length = 500)
+    private String bannerUrl;
 }

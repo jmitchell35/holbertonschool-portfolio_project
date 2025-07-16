@@ -7,6 +7,8 @@ class Recipe {
         this.tags = data.tags || [];
         this.recipeIngredients = data.recipeIngredients || [];
         this.createdAt = new Date(data.createdAt);
+        this.thumbnailUrl = data.thumbnailUrl;
+        this.bannerUrl = data.bannerUrl
     }
 
     getFormattedPrepTime() {
