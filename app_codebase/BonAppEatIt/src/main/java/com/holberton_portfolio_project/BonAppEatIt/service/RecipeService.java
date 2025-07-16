@@ -55,9 +55,17 @@ public class RecipeService {
         Specification<Recipe> spec = (root, query, criteriaBuilder) ->
                 criteriaBuilder.conjunction();
 
-        spec = spec.and(RecipeSpecifications.hasMaxPrepTime(filters.getMaxPrepTime()));
-        spec = spec.and(RecipeSpecifications.maxIngredients(filters.getMaxIngredients()));
-        spec = spec.and(RecipeSpecifications.hasSeasonalIngredients(filters.getMonth()));
+        if (filters.getMaxPrepTime() != null) {
+            spec = spec.and(RecipeSpecifications.hasMaxPrepTime(filters.getMaxPrepTime()));
+        }
+
+        if (filters.getMaxIngredients() != null) {
+            spec = spec.and(RecipeSpecifications.maxIngredients(filters.getMaxIngredients()));
+        }
+
+        if (filters.getMonth() != null) {
+            spec = spec.and(RecipeSpecifications.hasSeasonalIngredients(filters.getMonth()));
+        }
 
         if (filters.getTags() != null && !filters.getTags().isEmpty()) {
             spec = spec.and(RecipeSpecifications.hasTags(filters.getTags()));
