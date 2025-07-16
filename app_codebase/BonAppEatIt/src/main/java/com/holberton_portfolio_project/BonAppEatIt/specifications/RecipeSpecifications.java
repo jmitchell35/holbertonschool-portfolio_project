@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RecipeSpecifications {
     public static Specification<Recipe> hasMaxPrepTime(Integer maxTime) {
@@ -55,9 +56,9 @@ public class RecipeSpecifications {
         .fetch();
 
      */
-    public static Specification<Recipe> hasTags(List<String> tagNames) {
+    public static Specification<Recipe> hasTags(List<UUID> tagIds) {
         return (root, query, criteriaBuilder) -> {
-            if  (tagNames.isEmpty()) {
+            if  (tagIds == null || tagIds.isEmpty()) {
                 return criteriaBuilder.conjunction();
             }
           /*
@@ -69,7 +70,7 @@ public class RecipeSpecifications {
 
             List<Predicate> predicates = new ArrayList<>();
 
-            for (String tagName : tagNames) {
+            for (UUID uuid : tagIds) {
                 // Subquery nested into the main SQL query
                 Subquery<Long> subquery = query.subquery(Long.class);
                 // SQL scoping / query context: each query context needs its own table reference
@@ -83,7 +84,7 @@ public class RecipeSpecifications {
                                 // Where the query join and subquery join IDs match
                                 criteriaBuilder.equal(subRoot.get("id"), root.get("id")),
                                 // And where the subquery join has tagName in the "name" field
-                                criteriaBuilder.equal(subTagJoin.get("name"), tagName))
+                                criteriaBuilder.equal(subTagJoin.get("id"), uuid))
                         );
 
                 // Check if that subquery returns any row, add it to our list of required conditions (predicates)
