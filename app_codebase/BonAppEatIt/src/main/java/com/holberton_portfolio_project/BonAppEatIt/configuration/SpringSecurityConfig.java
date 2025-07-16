@@ -72,7 +72,8 @@ public class SpringSecurityConfig {
                                 ApiRoutes.V1.RECIPES,
                                 ApiRoutes.V1.RECIPES +
                                         "/{id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}",
-                                ApiRoutes.V1.BASE + "/tags"
+                                ApiRoutes.V1.BASE + "/tags",
+                                ApiRoutes.V1.BASE + "/ingredients"
                         ).permitAll()
                         .requestMatchers("/error").permitAll() // Allow errors to flow back to user from any route
                         .anyRequest().authenticated()
