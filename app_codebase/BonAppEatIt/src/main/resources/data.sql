@@ -63,9 +63,7 @@ VALUES
     (gen_random_uuid(), 'gousse(s)', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (gen_random_uuid(), 'brin(s)', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (gen_random_uuid(), 'pincée(s)', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(), 'poignée(s)', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(), 'filet(s)', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(), 'steak(s)', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    (gen_random_uuid(), 'poignée(s)', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 ON CONFLICT (name) DO NOTHING;
 
 -- Insert base ingredients
@@ -418,13 +416,32 @@ ON CONFLICT (ingredient_singular) DO NOTHING;
 -- Base tags
 INSERT INTO tags (tag_id, name, background_color_hex, font_color_hex, created_at, updated_at)
 VALUES
-    (gen_random_uuid(),'Cuisine italienne','#009246','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine française','#002654','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine indienne','#FF9933','#128807',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine japonaise','#FFFFFF','#BC002D',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine chinoise','#DE2812','#FFDC00',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine végétarienne','#00D668','#00572A',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine étatsunienne','#113765','#B52047',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine canadienne','#D63125','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(),'Cuisine québécoise','#0843A7','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    (gen_random_uuid(),'italienne','#009246','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'française','#002654','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'indienne','#FF9933','#128807',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'japonaise','#FFFFFF','#BC002D',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'chinoise','#DE2812','#FFDC00',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'végétarienne','#00D668','#00572A',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'étatsunienne','#113765','#B52047',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'canadienne','#D63125','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'québécoise','#0843A7','#FFFFFF',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'mijotée','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'rapide','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'plat en sauce','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'entrée','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'plat principal','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'gâteau','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'dessert','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'pâtisserie','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'cake','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'tarte','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'salade','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'quiche','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'tourte','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'farce','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'gratin','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'soufflé','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'risotto','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'sauce','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(),'plat de pâtes','#f5da42','#001A78',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 ON CONFLICT (name) DO NOTHING;
