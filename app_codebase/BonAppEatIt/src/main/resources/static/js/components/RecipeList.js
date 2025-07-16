@@ -44,11 +44,6 @@ class RecipeList extends HTMLElement {
     render() {
         this.innerHTML = `
             <div class="recipe-list-container">
-                <div class="recipe-list-header">
-                    <h2>Nos Recettes</h2>
-                    <div class="recipe-count" id="recipe-count"></div>
-                </div>
-                
                 <div class="recipe-grid" id="recipe-grid">
                     <!-- Recipe cards will be inserted here -->
                 </div>
@@ -72,10 +67,6 @@ class RecipeList extends HTMLElement {
 
     renderRecipes() {
         const grid = this.querySelector('#recipe-grid');
-        const countElement = this.querySelector('#recipe-count');
-
-        countElement.textContent =
-            `${this.pagination.totalElements} recette(s) trouvée(s)`;
 
         grid.innerHTML = '';
 

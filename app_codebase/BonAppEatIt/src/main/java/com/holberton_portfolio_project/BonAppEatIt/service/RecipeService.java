@@ -31,6 +31,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +51,8 @@ public class RecipeService {
     private final UserRepository userRepository;
     private final CollectionRepository collectionRepository;
 
-
+    // We need to keep the session with the DB opened so there is time to load tags...
+    @Transactional(readOnly = true)
     public Page<RecipeOutputDTO> findFilteredRecipes(RecipeFiltersDTO filters, Pageable pageable) {
         Specification<Recipe> spec = (root, query, criteriaBuilder) ->
                 criteriaBuilder.conjunction();

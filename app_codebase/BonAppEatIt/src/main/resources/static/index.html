@@ -8,12 +8,85 @@
     <script src="/js/models/Recipe.js"></script>
     <script src="/js/components/RecipeCardSmall.js"></script>
     <script src="/js/components/RecipeList.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <app-favicon></app-favicon>
 </head>
 <body>
     <!-- Shared header will be inserted by JavaScript -->
     <app-header></app-header>
     <main>
+        <div class="filter-container">
+            <button id="filter-toggle" class="filter-toggle-btn">
+                <i class="fa-solid fa-filter"></i>
+                <i class="fa-solid fa-chevron-down filter-arrow"></i>
+            </button>
+
+            <div id="filter-panel" class="filter-panel collapsed">
+                <form id="filter-form" class="filter-form">
+                    <div class="filter-row">
+                        <div class="filter-group" id="maxPrepTimeContainer">
+                            <label for="maxPrepTime">Temps (minutes) :</label>
+                            <input type="number" id="maxPrepTime" name="maxPrepTime" min="1">
+                        </div>
+
+                        <div class="filter-group" id="maxIngredientsContainer">
+                            <label for="maxIngredients">Nb. max. d'ingrédients :</label>
+                            <input type="number" id="maxIngredients" name="maxIngredients" min="2">
+                        </div>
+
+                        <div class="filter-group" id="monthContainer">
+                            <label for="month">Saisonnalité (mois):</label>
+                            <select id="month" name="month">
+                                <option value="">Ne pas filtrer</option>
+                                <option value="1">Janvier</option>
+                                <option value="2">Février</option>
+                                <option value="3">Mars</option>
+                                <option value="4">Avril</option>
+                                <option value="5">Mai</option>
+                                <option value="6">Juin</option>
+                                <option value="7">Juillet</option>
+                                <option value="2">Août</option>
+                                <option value="2">Septembre</option>
+                                <option value="2">Octobre</option>
+                                <option value="2">Novembre</option>
+                                <option value="2">Décembre</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>
+                                <i class="fa-solid fa-tags"></i>
+                                Tags:
+                            </label>
+                            <div class="tags-container" id="filter-tags-container">
+                                <!-- Tags will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- More complex filters -->
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label>Inclure les ingredients:</label>
+                            <input type="text" id="includeIngredients" name="includeIngredients"
+                                   placeholder="tomate, oignon..."
+                                   title="Comma-separated ingredient names">
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Exclure les ingredients:</label>
+                            <input type="text" id="excludeIngredients" name="excludeIngredients"
+                                   placeholder="champignons, poivron..."
+                                   title="Comma-separated ingredient names">
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <button type="submit" class="apply-filters-btn">Appliquer les filtres</button>
+                        <button type="button" id="clear-filters" class="clear-filters-btn">Supprimer les filtres</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Recipes List will be populated by JavaScript -->
         <recipe-list></recipe-list>
     </main>
     <!-- Shared footer will be inserted by JavaScript -->
