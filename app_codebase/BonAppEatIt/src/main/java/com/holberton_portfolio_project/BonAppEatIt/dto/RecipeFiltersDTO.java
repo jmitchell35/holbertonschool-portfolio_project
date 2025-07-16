@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,5 +22,5 @@ public class RecipeFiltersDTO {
     @Max(value = 12, message = "Month must be between 1 and 12")
     private Integer month;                      // 1-12 for seasonality
     private Integer maxPrepTime;                // Maximum prep time in minutes
-    private List<String> tags;                  // Must have all tags
+    private List<UUID> tags;                  // Must have all tags
 }
