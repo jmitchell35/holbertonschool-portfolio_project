@@ -72,6 +72,7 @@ public class RecipeController {
             @ModelAttribute @Valid RecipeFiltersDTO filters
             ) {
 
+        // Spring automatically maps the request parameters from Pageable Default to the Filters DTO
         Page<RecipeOutputDTO> recipes = recipeService.findFilteredRecipes(filters, pageable);
 
         return responseSuccessService.createSuccessResponse(
