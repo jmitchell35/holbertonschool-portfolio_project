@@ -69,8 +69,8 @@ public class RecipeService {
             spec = spec.and(RecipeSpecifications.hasSeasonalIngredients(filters.getMonth()));
         }
 
-        if (filters.getTags() != null && !filters.getTags().isEmpty()) {
-            spec = spec.and(RecipeSpecifications.hasTags(filters.getTags()));
+        if (filters.getTagIds() != null && !filters.getTagIds().isEmpty()) {
+            spec = spec.and(RecipeSpecifications.hasTags(filters.getTagIds()));
         }
 
         if (filters.getExcludeIngredients() != null && !filters.getExcludeIngredients().isEmpty()) {

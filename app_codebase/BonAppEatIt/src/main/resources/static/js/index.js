@@ -48,6 +48,9 @@ async function fetchRecipes(filters = {}, pagination = {}) {
             }
         });
 
+        console.log('Final URL params:', params.toString());
+        console.log('Full URL:', `/api/v1/recipes?${params}`);
+
         const response = await fetch(`/api/v1/recipes?${params}`, {
             credentials: 'include'
         });
@@ -106,6 +109,14 @@ function setupFilters(recipeList) {
             e.preventDefault();
 
             const formData = new FormData(filterForm);
+
+            console.log('Form data entries:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+
+            console.log('Selected filter tags:', Array.from(selectedFilterTags));
+
             const filters = {
                 maxPrepTime: formData.get('maxPrepTime') || null,
                 maxIngredients: formData.get('maxIngredients') || null,
@@ -113,7 +124,11 @@ function setupFilters(recipeList) {
                 // Convert comma-separated strings to arrays
                 includeIngredients: parseCommaSeparated(formData.get('includeIngredients')),
                 excludeIngredients: parseCommaSeparated(formData.get('excludeIngredients')),
-                tags: parseCommaSeparated(formData.get('tags'))
+
+                tagIds: Array.from(selectedFilterTags).map(tagName => {
+                    const tag = tagsCache.find(t => t.name === tagName);
+                    return tag ? tag.id : null;
+                }).filter(id => id !== null)
             };
 
             console.log('Applying filters:', filters);
