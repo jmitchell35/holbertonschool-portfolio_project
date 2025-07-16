@@ -15,11 +15,14 @@ import java.util.List;
 
 public class RecipeSpecifications {
     public static Specification<Recipe> hasMaxPrepTime(Integer maxTime) {
-        return (queriedEntity,
-                query,
-                nullableWhereClause) -> maxTime == null ?
-                nullableWhereClause.conjunction()
-                : nullableWhereClause.lessThanOrEqualTo(queriedEntity.get("prepTime"), maxTime);
+        /*
+        Root = queried DB entity
+        Query = SQL query context. SQL subquery => query.subquery
+        CriteriaBuilder = helps building the Predicate / filtering condition
+         */
+        return (root, query, criteriaBuilder) -> maxTime == null ?
+                criteriaBuilder.conjunction()
+                : criteriaBuilder.lessThanOrEqualTo(root.get("prepTime"), maxTime);
     }
 
     /*
