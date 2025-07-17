@@ -12,45 +12,71 @@ class RecipeCardSmall extends HTMLElement {
 
     render() {
         if (!this.recipe) return;
-        console.log('Recipe data:', this.recipes);
 
         const thumbnailHtml = this.recipe.thumbnailUrl ?
-            `<img src="${this.recipe.thumbnailUrl}" alt="${this.recipe.name}" class="recipe-thumbnail" onerror="this.style.display='none'">`
+            `<img src="${this.recipe.thumbnailUrl}" alt="${this.recipe.name}" class="recipe-thumbnail">`
             : '';
 
+        console.log(this.recipe.recipeIngredients);
+
         this.innerHTML = `
-            <article class="recipe-card" data-recipe-id="${this.recipe.id}">
-             ${thumbnailHtml}
-                <div class="recipe-header">
-                    <h3 class="recipe-title">${this.recipe.name}</h3>
-                    <div class="recipe-meta">
-                        <span class="prep-time">⏱️ ${this.recipe.getFormattedPrepTime()}</span>
-                        <span class="servings">👥 ${this.recipe.servings} portions</span>
-                        <span class="ingredients">🥗 ${this.recipe.getIngredientCount()} ingrédients</span>
+            <div class="card">
+              <div class="content">
+                <div class="back">
+                  <div class="back-content">
+                    ${thumbnailHtml}
+                  </div>
+                </div>
+                <div class="front">
+                  
+                  <div class="img">
+                    <div class="circle">
                     </div>
+                    <div class="circle" id="right">
+                    </div>
+                    <div class="circle" id="bottom">
+                    </div>
+                  </div>
+            
+                  <div class="front-content" style="--bg-image: url('${this.recipe.thumbnailUrl}')">
+                    <div class="description">
+                        <div class="card-description-header">
+                            <div class="prepTime">
+                                <i class="fa-solid fa-clock"></i>
+                                <span>${this.recipe.getFormattedPrepTime()}</span>
+                            </div>
+                            <div class="prepTime">
+                                <i class="fa-solid fa-user"></i>
+                                <span>${this.recipe.servings} portion(s)</span>
+                            </div>
+                        </div>
+                        <div class="card-recipe-ingredients">
+                        <h3>${this.recipe.name}</h3>
+                            ${this.recipe.recipeIngredients
+                                .map(ing => {
+                                    const quantity = ing.quantity;
+                                    const unit = ing.unit?.name || '';
+                                    const name = quantity > 1
+                                        ? ing.ingredient.ingredientPlural
+                                        : ing.ingredient.ingredientSingular;
+                                    return `<li>${name} : ${quantity} ${unit}</li>`;
+                                })
+                                .join('')}
+                       </div>
+                    </div>
+                  <div class="recipe-card-tags">
+                           ${this.renderTags()}
+                       </div>  
+                  </div>
                 </div>
-                
-                <div class="recipe-tags">
-                    ${this.renderTags()}
-                </div>
-                
-                <div class="recipe-ingredients-preview">
-                    ${this.renderIngredientsPreview()}
-                </div>
-                
-                <div class="recipe-actions">
-                    <button class="btn-view" onclick="this.closest('recipe-card-small').viewRecipe()">
-                        Voir la recette
-                    </button>
-                </div>
-            </article>
+              </div>
+            </div>
         `;
     }
 
     renderTags() {
         return this.recipe.tags.map(tag => `
-            <span class="tag" 
-                  style="background-color: ${tag.backgroundColorHex}; color: ${tag.fontColorHex};">
+            <span class="recipe-card-tag">
                 ${tag.name}
             </span>
         `).join('');
