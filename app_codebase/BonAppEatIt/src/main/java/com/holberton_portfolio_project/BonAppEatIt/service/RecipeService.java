@@ -7,6 +7,7 @@ import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeIngredientInputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeOutputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.IngredientNotFoundException;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.PublisherNotFoundException;
+import com.holberton_portfolio_project.BonAppEatIt.exceptions.RecipeNotFoundException;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.TagNotFoundException;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.UnitNotFoundException;
 import com.holberton_portfolio_project.BonAppEatIt.exceptions.UserImpersonationException;
@@ -112,6 +113,15 @@ public class RecipeService {
         Recipe savedRecipe = recipeRepository.save(recipe);
 
         return recipeMapper.toOutputDTO(savedRecipe);
+    }
+
+    @Transactional(readOnly = true)
+    public RecipeOutputDTO getRecipeById(UUID recipeId) {
+        Optional<Recipe> recipeOptional = recipeRepository.findByIdWithAllDetails(recipeId);
+
+        return recipeOptional
+                .map(recipeMapper::toOutputDTO)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe not found with ID: " + recipeId));
     }
 
     private void validatePublisher(String recipePublisher, String publishingEmail) {

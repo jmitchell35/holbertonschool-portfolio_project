@@ -4,9 +4,17 @@ class RecipeCardSmall extends HTMLElement {
         this.recipe = null;
     }
 
+    connectedCallback() {
+        this.addEventListener('click', () => {
+            this.viewRecipe();
+        });
+        this.style.cursor = 'pointer';
+    }
+
     // Called from the RecipeList
     setRecipe(recipeData) {
         this.recipe = new Recipe(recipeData);
+        console.log('Setting recipe:', this.recipe.name, 'ID:', this.recipe.id);
         this.render();
     }
 
@@ -100,6 +108,7 @@ class RecipeCardSmall extends HTMLElement {
     }
 
     viewRecipe() {
+        console.log('Clicked recipe:', this.recipe?.id);
         window.location.href = `/recipe.html?id=${this.recipe.id}`;
     }
 }

@@ -27,4 +27,7 @@ public class RecipeOutputDTO {
     private LocalDateTime createdAt;
     private String thumbnailUrl;
     private String bannerUrl;
+
+    @Builder.Default
+    private Set<InstructionOutputDTO> instructions = new HashSet<>();
 }

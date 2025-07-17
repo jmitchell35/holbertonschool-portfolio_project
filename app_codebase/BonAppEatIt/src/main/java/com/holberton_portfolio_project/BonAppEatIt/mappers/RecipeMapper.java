@@ -1,5 +1,6 @@
 package com.holberton_portfolio_project.BonAppEatIt.mappers;
 
+import com.holberton_portfolio_project.BonAppEatIt.dto.InstructionOutputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeIngredientOutputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.RecipeOutputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.dto.TagDTO;
@@ -15,11 +16,13 @@ import java.util.Set;
 public class RecipeMapper {
     private final TagMapper tagMapper;
     private final RecipeIngredientMapper recipeIngredientMapper;
+    private final InstructionMapper instructionMapper;
 
     public RecipeOutputDTO toOutputDTO(Recipe recipe) {
         Set<TagDTO> tagsDTO = tagMapper.toTagDTO(recipe.getTags());
         Set<RecipeIngredientOutputDTO> recipeIngredientsDTO = recipeIngredientMapper.toRecipeIngredientOutputDTO(
                 recipe.getRecipeIngredients());
+        Set<InstructionOutputDTO> instructionsDTO = instructionMapper.toOutputDTO(recipe.getInstructions());
 
         return RecipeOutputDTO.builder()
                 .id(recipe.getId())
@@ -30,6 +33,7 @@ public class RecipeMapper {
                 .thumbnailUrl(recipe.getThumbnailUrl())
                 .bannerUrl(recipe.getBannerUrl())
                 .recipeIngredients(recipeIngredientsDTO)
+                .instructions(instructionsDTO)
                 .createdAt(recipe.getCreatedAt())
                 .build();
     }

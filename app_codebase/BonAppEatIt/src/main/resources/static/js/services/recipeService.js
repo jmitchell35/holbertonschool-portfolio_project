@@ -56,6 +56,25 @@ class RecipeService {
             return { success: false, error: error.message };
         }
     }
+
+    static async getById(id) {
+        try {
+            const response = await fetch(`/api/v1/recipes/${id}`, {
+                credentials: 'include'
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                return { success: true, data: data.data };
+            } else if (response.status === 404) {
+                return { success: false, error: 'Recette non trouvée.' };
+            } else {
+                return { success: false, error: `Erreur HTTP ${response.status}` };
+            }
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
+    }
 }
 
 window.RecipeService = RecipeService;

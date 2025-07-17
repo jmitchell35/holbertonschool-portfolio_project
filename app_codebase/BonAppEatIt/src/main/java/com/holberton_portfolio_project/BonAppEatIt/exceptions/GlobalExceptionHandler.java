@@ -234,4 +234,17 @@ public class GlobalExceptionHandler {
                 List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
         );
     }
+
+    @ExceptionHandler(RecipeNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseErrorDTO handleRecipeNotFoundException(
+            RecipeNotFoundException exception,
+            HttpServletRequest request
+    ) {
+        return responseErrorService.createErrorResponse(
+                request,
+                HttpStatus.NOT_FOUND,
+                List.of(ResponseErrorItemDTO.businessError(exception.getMessage()))
+        );
+    }
 }

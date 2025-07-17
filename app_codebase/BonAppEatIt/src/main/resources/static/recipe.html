@@ -5,17 +5,224 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recette - BonAppEatIt</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/recipe-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <app-favicon></app-favicon>
 </head>
 <body>
 <!-- Shared header will be inserted by JavaScript -->
 <app-header></app-header>
 <main>
+    <div id="recipe-container" class="recipe-container">
+        <!-- Loading state -->
+        <div id="loading-state" class="loading-state">
+            <div class="spinner"></div>
+            <p>Chargement de la recette...</p>
+        </div>
 
+        <!-- Error state -->
+        <div id="error-state" class="error-state" style="display: none;">
+            <div class="error-content">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <h2>Erreur</h2>
+                <p id="error-message">Une erreur est survenue lors du chargement de la recette.</p>
+                <div class="error-actions">
+                    <button onclick="window.location.reload()" class="retry-btn">Réessayer</button>
+                    <a href="/" class="back-btn">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe content -->
+        <div id="recipe-content" class="recipe-content" style="display: none;">
+            <!-- Recipe header with banner -->
+            <div class="recipe-header">
+                <div class="recipe-banner">
+                    <img id="recipe-banner" src="" alt="" class="banner-image">
+                    <div class="recipe-header-overlay">
+                        <div class="recipe-title-section">
+                            <h1 id="recipe-title"></h1>
+                            <div class="recipe-meta">
+                                <span class="meta-item">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span id="recipe-prep-time"></span>
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span id="recipe-servings"></span> portions
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fa-solid fa-list"></i>
+                                    <span id="recipe-ingredient-count"></span> ingrédients
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe details -->
+            <div class="recipe-details">
+                <!-- Tags section -->
+                <div class="recipe-section tags-section" id="tags-section" style="display: none;">
+                    <h2><i class="fa-solid fa-tags"></i> Catégories</h2>
+                    <div class="tags-container" id="recipe-tags">
+                        <!-- Tags will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Ingredients section -->
+                <div class="recipe-section ingredients-section">
+                    <h2><i class="fa-solid fa-list-ul"></i> Ingrédients</h2>
+                    <div class="ingredients-list" id="recipe-ingredients">
+                        <!-- Ingredients will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Instructions section -->
+                <div class="recipe-section instructions-section">
+                    <h2><i class="fa-solid fa-utensils"></i> Instructions</h2>
+                    <div class="instructions-list" id="recipe-instructions">
+                        <!-- Instructions will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="recipe-actions">
+                <button onclick="window.print()" class="action-btn print-btn">
+                    <i class="fa-solid fa-print"></i> Imprimer
+                </button>
+                <button onclick="window.history.back()" class="action-btn back-btn">
+                    <i class="fa-solid fa-arrow-left"></i> Retour
+                </button>
+            </div>
+        </div>
+    </div>
 </main>
 <!-- Shared footer will be inserted by JavaScript -->
 <app-footer></app-footer>
+
+<script src="/js/services/recipeService.js"></script>
 <script src="/js/common.js"></script>
-<script src="/js/recipe.js"></script>
+<script>
+    // Get recipe ID from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const recipeId = urlParams.get('id');
+
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const recipeContent = document.getElementById('recipe-content');
+    const errorMessage = document.getElementById('error-message');
+
+    const recipeBanner = document.getElementById('recipe-banner');
+    const recipeTitle = document.getElementById('recipe-title');
+    const recipePrepTime = document.getElementById('recipe-prep-time');
+    const recipeServings = document.getElementById('recipe-servings');
+    const recipeIngredientCount = document.getElementById('recipe-ingredient-count');
+    const recipeTags = document.getElementById('recipe-tags');
+    const recipeIngredients = document.getElementById('recipe-ingredients');
+    const recipeInstructions = document.getElementById('recipe-instructions');
+    const tagsSection = document.getElementById('tags-section');
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        if (!recipeId) {
+            showError('Aucun identifiant de recette fourni.');
+            return;
+        }
+
+        await loadRecipe(recipeId);
+    });
+
+    async function loadRecipe(id) {
+        try {
+            showLoading();
+
+            const result = await RecipeService.getById(id);
+
+            if (result.success) {
+                displayRecipe(result.data);
+            } else {
+                showError(result.error || 'Erreur lors du chargement de la recette.');
+            }
+        } catch (error) {
+            console.error('Error loading recipe:', error);
+            showError('Erreur de connexion. Veuillez réessayer.');
+        }
+    }
+
+    function displayRecipe(recipe) {
+        document.title = `${recipe.name} - BonAppEatIt`;
+
+        if (recipe.bannerUrl) {
+            recipeBanner.src = recipe.bannerUrl;
+            recipeBanner.alt = recipe.name;
+        } else {
+            // Hide banner if no image
+            document.querySelector('.recipe-banner').style.display = 'none';
+        }
+
+        recipeTitle.textContent = recipe.name;
+        recipePrepTime.textContent = `${recipe.prepTime} min`;
+        recipeServings.textContent = recipe.servings;
+        recipeIngredientCount.textContent = recipe.recipeIngredients ? recipe.recipeIngredients.length : 0;
+
+        // Tags
+        if (recipe.tags && recipe.tags.length > 0) {
+            tagsSection.style.display = 'block';
+            recipeTags.innerHTML = recipe.tags.map(tag => `
+            <span class="tag">
+                ${tag.name}
+            </span>
+        `).join('');
+        }
+
+        if (recipe.recipeIngredients && recipe.recipeIngredients.length > 0) {
+            recipeIngredients.innerHTML = recipe.recipeIngredients.map(ri => `
+            <div class="ingredient-item">
+                <span class="ingredient-quantity">${ri.quantity}</span>
+                <span class="ingredient-unit">${ri.unit.name}</span>
+                <span class="ingredient-name">${ri.ingredient.ingredientSingular}</span>
+            </div>
+        `).join('');
+        } else {
+            recipeIngredients.innerHTML = '<p class="no-data">Aucun ingrédient disponible.</p>';
+        }
+
+        if (recipe.instructions && recipe.instructions.length > 0) {
+            const sortedInstructions = [...recipe.instructions].sort((a, b) => a.stepNumber - b.stepNumber);
+
+            recipeInstructions.innerHTML = sortedInstructions.map(instruction => `
+            <div class="instruction-item">
+                <div class="instruction-number">${instruction.stepNumber}</div>
+                <div class="instruction-text">${instruction.text}</div>
+            </div>
+        `).join('');
+        } else {
+            recipeInstructions.innerHTML = '<p class="no-data">Aucune instruction disponible.</p>';
+        }
+
+        showContent();
+    }
+
+    function showLoading() {
+        loadingState.style.display = 'flex';
+        errorState.style.display = 'none';
+        recipeContent.style.display = 'none';
+    }
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        loadingState.style.display = 'none';
+        errorState.style.display = 'flex';
+        recipeContent.style.display = 'none';
+    }
+
+    function showContent() {
+        loadingState.style.display = 'none';
+        errorState.style.display = 'none';
+        recipeContent.style.display = 'block';
+    }
+</script>
 </body>
 </html>
