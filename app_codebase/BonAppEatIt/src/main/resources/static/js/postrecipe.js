@@ -80,8 +80,7 @@ function renderTags() {
              data-tag-id="${tag.id}"
              data-tag-name="${tag.name}"
              data-bg-color="${tag.backgroundColorHex}"
-             data-font-color="${tag.fontColorHex}"
-             style="background-color: ${tag.backgroundColorHex}; color: ${tag.fontColorHex};">
+             data-font-color="${tag.fontColorHex}">
             ${tag.name}
         </div>
     `).join('');
