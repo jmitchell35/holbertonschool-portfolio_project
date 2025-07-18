@@ -22,7 +22,7 @@ button {
 }
 
 .hero-section {
-    background-image: url('../assets/images/toWEBP/background_cropped_rotated.webp');
+    background-image: url('/images/background_cropped_rotated.webp');
 
     /* Sizing */
     background-size: cover; /* Scale to fill entire container */
