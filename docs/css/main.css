@@ -23,7 +23,7 @@ button {
 
 .hero-section {
     background-image: url('../images/background_cropped_rotated.webp');
-    
+
     /* Sizing */
     background-size: cover; /* Scale to fill entire container */
     background-position: center; /* Center the image */
@@ -31,7 +31,7 @@ button {
 
     background-color: rgba(0, 0, 0, 0.4);
 
-    min-height: 200px; /* Minimum height for content */
+    min-height: 400px; /* Minimum height for content */
     padding: 2rem 0; /* Space for navigation */
 
     display: flex;
