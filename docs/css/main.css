@@ -29,9 +29,7 @@ button {
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Don't tile the image */
 
-    background-color: rgba(0, 0, 0, 0.4);
-
-    min-height: 400px; /* Minimum height for content */
+    min-height: 200px; /* Minimum height for content */
     padding: 2rem 0; /* Space for navigation */
 
     display: flex;
