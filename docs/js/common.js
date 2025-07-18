@@ -130,7 +130,7 @@ class AppHeader extends HTMLElement {
 class AppFavicon extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" >`
+        <link rel="icon" href="favicon.ico" type="image/x-icon" >`
     }
 }
 
