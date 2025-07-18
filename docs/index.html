@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue - BonAppEatIt</title>
+    <title>Landing Page - BonAppEatIt</title>
     <link rel="stylesheet" href="/css/main.css">
     <app-favicon></app-favicon>
 </head>
 <body>
-    <!-- Shared header will be inserted by JavaScript -->
-    <app-header></app-header>
+    <header class="main-header">
+        <div class="hero-section"></div>
+            <div class="header-content">
+                <div class="main-bar">
+                    <nav class="main-nav">
+                        <a href="/">Nos recettes</a>
+                    </nav>
+                <div class="auth-bar">                
+                    <div class="guest-links">
+                        <a href="/register.html" class="auth-link register-link">S'enregistrer</a>
+                        <a href="/login.html" class="auth-link login-link">Connexion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <main>
     </main>
     <!-- Shared footer will be inserted by JavaScript -->
