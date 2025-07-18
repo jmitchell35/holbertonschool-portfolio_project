@@ -22,8 +22,8 @@ button {
 }
 
 .hero-section {
-    background-image: url('images/background_cropped_rotated.webp');
-
+    background-image: url('../images/background_cropped_rotated.webp');
+    
     /* Sizing */
     background-size: cover; /* Scale to fill entire container */
     background-position: center; /* Center the image */
