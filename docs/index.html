@@ -30,7 +30,20 @@
             text-align: center;
             color: white;
             position: relative;
-            z-index: 1;
+            will-change: transform;
+            transform-style: preserve-3d;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(0, 26, 120, 0.7), rgba(0, 26, 120, 0.7)), url('./images/background_cropped_rotated.webp');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            transform: translateZ(0);
         }
 
         .nav-bar {
@@ -363,12 +376,12 @@
             });
         });
 
-        // Add parallax effect to hero background
+        const heroBg = document.querySelector('.hero-bg');
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero-section');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
         });
     </script>
