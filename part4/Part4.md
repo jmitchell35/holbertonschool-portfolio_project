@@ -29,7 +29,40 @@
   </tr>
 </table>
 
-### SPRINT 1 - Finishing the Back-End - API first approach
+### SPRINT 1 - IBM certifications
+
+<table width="100%">
+  <tr>
+    <th align="left" bgcolor="#E8E8E8">USER STORY</th>
+    <th align="left" bgcolor="#E8E8E8">TASK</th>
+    <th align="left" bgcolor="#E8E8E8">DELIVERABLE</th>
+    <th align="left" bgcolor="#E8E8E8">PRIORITY</th>
+    <th align="left" bgcolor="#E8E8E8">STATUS</th>
+  </tr>
+  <tr>
+    <td rowspan="3">Not applicable</td>
+    <td>IBM Cloud essentials</td>
+    <td>Certificate</td>
+    <td>Must Have</td>
+    <td>Done</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Not applicable</td>
+    <td>IBM Cybersecurity fundamentals</td>
+    <td>Certificate</td>
+    <td>Must Have</td>
+    <td>Done</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Not applicable</td>
+    <td>Coding in Java</td>
+    <td>Certificate</td>
+    <td>Optional - direct project connection</td>
+    <td>Done</td>
+  </tr>
+</table>
+
+### SPRINT 2 - Finishing the Back-End - API first approach
 
 <table width="100%">
   <tr>
@@ -332,5 +365,34 @@
     <td>CSS transitions and hover effects</td>
     <td>Could Have</td>
     <td>Done</td>
+  </tr>
+</table>
+
+## Takeaways
+
+<table width="100%">
+  <tr>
+    <th align="left" bgcolor="#E8E8E8">SPRINT</th>
+    <th align="left" bgcolor="#E8E8E8">START</th>
+    <th align="left" bgcolor="#E8E8E8">FINISH</th>
+    <th align="left" bgcolor="#E8E8E8">TAKEAWAY</th>
+  </tr>
+  <tr>
+    <td>S1 - IBM Certifications</td>
+    <td>June 2nd</td>
+    <td>June 13th => June 16th</td>
+    <td>Very long certifications. It takes a lot a time to complete.</td>
+  </tr>
+  <tr>
+    <td>S2 - back-end</td>
+    <td>June 16th</td>
+    <td>June 29th => July 11th</td>
+    <td>Solid foundation is key, but also takes a lot of time. I guess I should have restricted the MVP even more.</td>
+  </tr>
+  <tr>
+    <td>S3 - Build the client</td>
+    <td>June 30th => July 11th</td>
+    <td>July 14th => July 17th</td>
+    <td>Built in hurry due to the delays stacking up. However, the solid back-end foundations made it easier, although a few adjustments were required.</td>
   </tr>
 </table>
