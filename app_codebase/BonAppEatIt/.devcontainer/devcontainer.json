@@ -1,0 +1,45 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java-postgres
+{
+  "name": "Java & PostgreSQL",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/java:1" : {
+      "version":  "21"
+    }
+  },
+
+  // setting container's env variables required for project.
+  "containerEnv": {
+    "POSTGRESQL_USER": "postgres",
+    "POSTGRESQL_PASSWORD": "postgres",
+    "BONAPPEATIT_DEV_KEYSTORE_PASSWORD": "dev_keystore_password"
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // This can be used to network with other containers or with the host.
+  "forwardPorts": [8443, 5432],
+  "portsAttributes": {
+    "8443": {
+      "label": "Spring Boot HTTPS",
+      "protocol": "https"
+    },
+    "5432": {
+      "label": "PostgreSQL"
+    }
+  },
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "mvn dependency:resolve",
+
+  // Configure tool-specific properties. => vs-code specific. Ignore for IntelliJ IDEA
+  // "customizations": {},
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // vscode is pre-configured sudo user coming from the image
+  "remoteUser": "vscode"
+}
