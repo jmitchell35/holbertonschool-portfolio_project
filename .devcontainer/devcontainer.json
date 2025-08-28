@@ -32,6 +32,11 @@
     }
   },
 
+  // Adding a mount to preserve maven cache as docker volume (system-agnostic project container)
+  "mounts": [
+    "source=bonappeatit-maven-cache,target=/home/vscode/.m2,type=volume"
+  ]
+
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
