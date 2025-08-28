@@ -1,5 +1,7 @@
 volumes:
   postgres-data:
+  # caching dependencies to speed up the dev container spin up
+  maven-cache:
 
 services:
   app:
@@ -20,6 +22,8 @@ services:
 # Volumes are local files mounted / synced to dev container
 #    volumes:
 #      - ../..:/workspaces:cached
+    volumes:
+      - maven-cache:/home/vscode/.m2
       
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
