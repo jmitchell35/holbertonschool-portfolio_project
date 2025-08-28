@@ -23,7 +23,7 @@
     },
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bash -c 'sudo chown -R vscode:vscode /home/vscode/.m2 && mvn -e -X -f app_codebase/BonAppEatIt/pom.xml dependency:resolve",
+  "postCreateCommand": "bash -c 'sudo chown -R vscode:vscode /home/vscode/.m2 && mvn -e -X -f app_codebase/BonAppEatIt/pom.xml dependency:resolve'",
 
 	// Configure tool-specific properties.
   "customizations" : {
