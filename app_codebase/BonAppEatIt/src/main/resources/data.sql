@@ -8,7 +8,7 @@ VALUES
 -- Create Admin user
 INSERT INTO users (user_id, email, username, password, password_updated_at, is_verified, is_active, created_at, updated_at)
 VALUES
-    (gen_random_uuid(), 'th75plu4a@mozmail.com', 'admin_th75plu4a','$2a$12$gcnoUWbp2JkvkcuUSTv8R.EZIyZZBtsWhnTE5NPZs42CiYRX26yWu', CURRENT_TIMESTAMP, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (gen_random_uuid(), 'th75plu4a@mozmail.com', 'admin_th75plu4a','$2a$12$N2SBJN9kUymrtdTqZNC9EOdNGFyRciCdn9lojIq37iOmIodqaD6wO', CURRENT_TIMESTAMP, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (gen_random_uuid(), 'test@example.com','test_user' ,'$2a$12$WuOOclBlqkaBpFZg5gp/pejTElxK.W42iZxXY7eXGQqY4sA296nne', CURRENT_TIMESTAMP, true, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 ON CONFLICT (email) DO NOTHING;
 
