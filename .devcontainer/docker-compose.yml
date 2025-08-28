@@ -23,7 +23,7 @@ services:
 #    volumes:
 #      - ../..:/workspaces:cached
     volumes:
-      - maven-cache:/home/vscode/.m2
+      - bonappeatit-maven-cache:/home/vscode/.m2
       
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
