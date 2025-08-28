@@ -23,7 +23,7 @@
     },
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "mvn -e -f -X app_codebase/BonAppEatIt/pom.xml dependency:resolve",
+  "postCreateCommand": "mvn -e -X -f app_codebase/BonAppEatIt/pom.xml dependency:resolve",
 
 	// Configure tool-specific properties.
   "customizations" : {
