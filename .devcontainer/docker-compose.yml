@@ -1,7 +1,7 @@
 volumes:
   postgres-data:
   # caching dependencies to speed up the dev container spin up
-  maven-cache:
+  bonappeatit-maven-cache:
 
 services:
   app:
