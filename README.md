@@ -3,7 +3,7 @@
 ## Introduction to the General Project
 
 ### Objective
-This multi-phase project is designed to guide students through the process of developing a Minimum Viable Product (MVP) from concept to completion. Working collaboratively in stable teams, students will gain hands-on experience with each stage of the software development lifecycle, simulating a real-world environment. The project emphasizes teamwork, technical execution, documentation, and project management, culminating in a fully functional MVP.
+This multi-stage project is designed to guide students through the process of developing a Minimum Viable Product (MVP) from concept to completion. Working collaboratively in stable teams, students will gain hands-on experience with each stage of the software development lifecycle, simulating a real-world environment. The project emphasizes teamwork, technical execution, documentation, and project management, culminating in a fully functional MVP.
 
 ### Importance
 By working on a comprehensive project, students will:
