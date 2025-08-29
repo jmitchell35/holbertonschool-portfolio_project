@@ -28,6 +28,16 @@ OCI runtime exec failed: exec failed: unable to start container process: chdir t
 ```bash
 [5743 ms] Error: Exectuable 'docker' not found on PATH
 ```
+* No container display in the Docker Desktop GUI : probably using default docker context
+```bash
+docker context show
+docker ps -a
+```
+Either delete containers and volumes, or keep them if you don't mind the GUI.
+You can configure IntelliJ docker service to use docker desktop daemon
+
+
+
 You may need to set the connection to the Data Source for IDE DB GUI.
 
 ```
