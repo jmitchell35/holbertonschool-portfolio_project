@@ -8,6 +8,5 @@ class BonAppEatItApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
-
+    }
 }
