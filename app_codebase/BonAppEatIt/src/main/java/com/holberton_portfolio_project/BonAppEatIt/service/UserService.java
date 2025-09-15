@@ -39,6 +39,7 @@ public class UserService {
 
         return UserCreatedDTO.builder()
                 .email(email)
+                .username(username)
                 .build();
     }
 
