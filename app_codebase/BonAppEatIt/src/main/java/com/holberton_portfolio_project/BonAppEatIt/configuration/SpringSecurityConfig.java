@@ -47,6 +47,7 @@ public class SpringSecurityConfig {
                          Role "ADMIN" is automatically matched to ROLE_ADMIN through the DB.
                          Alternative syntax could be .hasAuthority("ROLE_ADMIN")
                          */
+                        .requestMatchers("/actuator/**").hasRole("ADMIN")
                         .requestMatchers(
                                 "/css/**",
                                 "/js/**",
