@@ -44,5 +44,4 @@ public class PasswordEncodingServiceTest {
         assertThat(passwordEncodingService.comparePasswords("wrongpassword", encoded))
                 .isFalse();
     }
-
 }
