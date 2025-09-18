@@ -2,13 +2,13 @@ package com.holberton_portfolio_project.BonAppEatIt.mappers;
 
 import com.holberton_portfolio_project.BonAppEatIt.dto.InstructionOutputDTO;
 import com.holberton_portfolio_project.BonAppEatIt.models.Instruction;
+import com.holberton_portfolio_project.BonAppEatIt.models.Recipe;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 
 class InstructionMapperTest {
     Instruction instruction1;
@@ -21,12 +21,12 @@ class InstructionMapperTest {
         instruction1 = new Instruction(
                 "test",
                 1,
-                any()
+                new Recipe()
         );
         instruction2 = new Instruction(
                 "test2",
                 2,
-                any()
+                new Recipe()
         );
         testSet = new HashSet<>();
 
@@ -65,6 +65,6 @@ class InstructionMapperTest {
                 .isNotNull()
                 .hasSize(2)
                 .extracting(InstructionOutputDTO::getStepNumber)
-                .containsExactly(instruction1.getStepNumber(), instruction2.getStepNumber());
+                .containsExactlyInAnyOrder(instruction1.getStepNumber(), instruction2.getStepNumber());
     }
 }
