@@ -22,7 +22,8 @@ class IngredientMapperTest {
             true,
             true,
             true,
-            true, true,
+            true,
+            true,
             true,
             true,
             new HashSet<>()
@@ -39,7 +40,8 @@ class IngredientMapperTest {
             true,
             true,
             true,
-            true, true,
+            true,
+            true,
             true,
             true,
             new HashSet<>()
