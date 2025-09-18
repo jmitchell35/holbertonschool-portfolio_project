@@ -31,15 +31,4 @@ public class RecipeIngredientMapper {
                 .map(this::toRecipeIngredientOutputDTO)
                 .collect(Collectors.toSet());
     }
-
-    public RecipeIngredientOutputDTO toRecipeIngredientInputDTO(RecipeIngredient recipeIngredient) {
-        return RecipeIngredientOutputDTO.builder()
-                .build();
-    }
-
-    public Set<RecipeIngredientOutputDTO> toRecipeIngredientInputDTO(Set<RecipeIngredient> recipeIngredients) {
-        return recipeIngredients.stream()
-                .map(this::toRecipeIngredientOutputDTO)
-                .collect(Collectors.toSet());
-    }
 }
