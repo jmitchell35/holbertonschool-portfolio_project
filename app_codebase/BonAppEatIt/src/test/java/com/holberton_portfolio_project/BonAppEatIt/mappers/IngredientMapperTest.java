@@ -58,8 +58,7 @@ class IngredientMapperTest {
         IngredientDTO test = mapper.toOutputDTO(ingredient1);
 
         assertThat(test)
-                .isNotNull()
-                .isInstanceOf(IngredientDTO.class);
+                .isNotNull();
 
         assertThat(test.getId())
                 .isNotNull()
