@@ -123,14 +123,17 @@ public class GlobalExceptionHandler {
         // handle cross-field errors and map them to field for frontend usage
         bindingResult.getGlobalErrors().forEach(globalError -> {
             // Need a mapping helper function (from global error to confirmation field)
-            String errorField = mapGlobalErrorToField(globalError.getCode());
-            if (errorField != null) {
-                errors.add(ResponseErrorItemDTO.fieldError(
-                        globalError.getDefaultMessage(),
-                        errorField
-                ));
-            } else {
-                errors.add(ResponseErrorItemDTO.businessError(globalError.getDefaultMessage()));
+            if (globalError.getCode() != null) {
+                String errorField = mapGlobalErrorToField(globalError.getCode());
+
+                if (errorField != null) {
+                    errors.add(ResponseErrorItemDTO.fieldError(
+                            globalError.getDefaultMessage(),
+                            errorField
+                    ));
+                } else {
+                    errors.add(ResponseErrorItemDTO.businessError(globalError.getDefaultMessage()));
+                }
             }
         });
 
