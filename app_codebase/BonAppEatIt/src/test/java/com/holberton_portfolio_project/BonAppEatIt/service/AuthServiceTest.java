@@ -106,6 +106,4 @@ class AuthServiceTest {
         verify(mockedPasswordEncodingService, never()).hashPassword(any());
         verify(mockedUserService, never()).createUser(any(), any(), any());
     }
-
-
 }
